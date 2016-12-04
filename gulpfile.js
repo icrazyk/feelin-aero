@@ -8,6 +8,7 @@ const usemin = require('gulp-usemin');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const stylus = require('gulp-stylus');
+const plumber = require('gulp-plumber');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
 
@@ -18,6 +19,7 @@ const browserSync = require('browser-sync').create();
 function styles()
 {
   return gulp.src('./src/css/app.styl')
+    .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(stylus())
     .pipe(sourcemaps.write())
@@ -84,15 +86,14 @@ gulp.task('images:build', ['clean'], images);
 gulp.task('images:dev', imagesWatch);
 
 gulp.task('usemin:build', ['clean', 'ect:build'], startUsemin);
-gulp.task('usemin:dev', startUsemin);
 
 gulp.task('browser-sync', ['build'], function() {
   browserSync.init({
     server: {
-      baseDir: "./build/"
+      baseDir: "."
     }
   });
-  gulp.watch("./build/*.html").on('change', browserSync.reload);
+  gulp.watch("./build/**/*.*").on('change', browserSync.reload);
 });
 
 gulp.task('watch', ['build'], function()
@@ -100,7 +101,6 @@ gulp.task('watch', ['build'], function()
   gulp.watch('./src/**/*.styl', ['styles:dev']);
   gulp.watch('./src/**/*.js', ['js:dev']);
   gulp.watch('./src/**/*.ect', ['ect:dev']);
-  gulp.watch('./build/**/*.html', ['usemin:dev']);
 });
 
 gulp.task('build', ['clean', 'styles:build', 'js:build', 'ect:build', 'images:build', 'usemin:build']);
