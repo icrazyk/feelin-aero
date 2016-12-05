@@ -1,0 +1,56 @@
+.menu
+  margin 0
+  padding 0
+  list-style-type none
+  &-toggle
+    padding 10px 20px
+    float left
+    color $menu-color
+    &__icon
+      float left
+      width 25px
+      margin-right 10px
+      span
+        display block
+        margin 3px 0
+        background $menu-color
+        height 2px
+    &__title
+      float left
+  &-mobile
+    display none
+  .header &
+    clearfix()
+    background $menu-bg
+    border-radius 4px
+    a
+      display block
+      padding 10px 20px
+      color $menu-color
+      text-decoration none
+      &:hover
+        background darken($menu-bg, 10%)
+      &:active
+        background darken($menu-bg, 15%)
+    .current-menu-item > a
+      background darken($menu-bg, 5%)
+    & > .menu-item
+      float left
+      position relative
+      &:hover 
+        .sub-menu
+          display block
+      &:first-child > a
+        border-radius 4px 0 0 4px
+    .sub-menu
+      display none
+      position absolute
+      top 100%
+      left 0
+      margin 0
+      padding 0
+      list-style-type none
+      background $menu-bg
+      border-radius 0 0 4px 4px
+      & > .menu-item:last-child > a
+        border-radius 0 0 4px 4px    

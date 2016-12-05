@@ -1,0 +1,39 @@
+$sm-devices-min = 768px
+$md-devices-min = 992px
+$lg-devices-min = 1200px
+
+$menu-color = #fff
+$menu-bg = #6666cc
+
+clearfix()
+  zoom 1
+  &:after
+  &:before
+    content ""
+    display table
+  &:after
+    clear both
+
+.section
+  @media (min-width: $md-devices-min)
+    padding-left 5%
+    padding-right 5%
+
+*
+  box-sizing border-box
+
+.container
+  padding 0 20px
+  max-width 1020px
+  margin 0 auto
+
+.row
+  margin 0 -20px
+  clearfix()
+
+body
+  background #fff
+
+.page
+  @media (min-width: $md-devices-min)
+    background url(img/header-bg.jpg) no-repeat center top

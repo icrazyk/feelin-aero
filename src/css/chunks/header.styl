@@ -1,0 +1,35 @@
+.header
+  @extend .section
+  padding-top 40px
+  background url(img/header-bg.jpg) no-repeat left top
+  @media (min-width: $sm-devices-min)
+    padding-top 100px
+  @media (min-width: $md-devices-min)
+    background none
+    padding-top 37px
+    height 340px
+  &__menu
+    margin-top 40px
+    @media (min-width: $sm-devices-min)
+      margin-top 80px
+    @media (min-width: $md-devices-min)
+      margin-top 20px
+  &-logo
+    display block
+    width 198px
+    height 139px
+    background url(img/logo.png)
+    margin 0 auto
+    @media (min-width: $md-devices-min)
+      margin-left 180px
+  &-menu
+    &__menu
+      clearfix()
+      display none
+      @media (min-width: $md-devices-min)
+        display block
+    &__toggle
+      background $menu-bg
+      clearfix()
+      @media (min-width: $md-devices-min)
+        display none
