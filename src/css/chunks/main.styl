@@ -1,2 +1,22 @@
 .main
-  clearfix()
+  @extend .section
+  padding-top 20px
+  h1
+    font-size 23px
+    @media (min-width: $sm-devices-min)
+      font-size 32px
+  p
+    margin 0 0 1rem
+  &__row
+    clearfix()
+    margin 0 -15px
+  &__col
+    padding 0 15px
+  &_column_two
+    .main__col
+      @media (min-width: $md-devices-min)
+        float left
+        &_content
+          width 70%
+        &_sidebar
+          width 30%

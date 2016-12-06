@@ -15,6 +15,7 @@ clearfix()
     clear both
 
 .section
+  clearfix()
   @media (min-width: $md-devices-min)
     padding-left 5%
     padding-right 5%
@@ -28,11 +29,12 @@ clearfix()
   margin 0 auto
 
 .row
-  margin 0 -20px
   clearfix()
+  margin 0 -20px
 
 body
   background #fff
+  line-height 1.375
 
 .page
   @media (min-width: $md-devices-min)

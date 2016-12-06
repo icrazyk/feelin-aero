@@ -26,6 +26,14 @@ function styles()
     .pipe(gulp.dest('./build/'));
 }
 
+function stylesWatch()
+{
+  return watch('./src/css/**/*.styl', function() 
+  {
+    styles();
+  });
+}
+
 function js()
 {
   return gulp.src('./src/js/**/*.js')
@@ -42,6 +50,14 @@ function startEct()
     .pipe(gulp.dest('./build/'));
 }
 
+function startEctWatch()
+{
+  return watch('./src/**/*.ect', function() 
+  {
+    startEct();
+  });
+}
+
 function images()
 {
   return gulp.src('./src/img/*.{png,jpg,svg}')
@@ -50,7 +66,7 @@ function images()
 
 function imagesWatch()
 {
-  return watch('./src/img/*.{jpg,png,svg}', function () 
+  return watch('./src/img/*.{jpg,png,svg}', function() 
   {
     images();
   });
@@ -74,20 +90,21 @@ gulp.task('clean', function()
 });
 
 gulp.task('styles:build', ['clean'], styles);
-gulp.task('styles:dev', styles);
+gulp.task('styles:dev', stylesWatch);
 
 gulp.task('js:build', ['clean'], js);
 gulp.task('js:dev', js);
 
 gulp.task('ect:build', ['clean'], startEct);
-gulp.task('ect:dev', startEct);
+gulp.task('ect:dev', startEctWatch);
 
 gulp.task('images:build', ['clean'], images);
 gulp.task('images:dev', imagesWatch);
 
 gulp.task('usemin:build', ['clean', 'ect:build'], startUsemin);
 
-gulp.task('browser-sync', ['build'], function() {
+gulp.task('browser-sync', ['build'], function() 
+{
   browserSync.init({
     server: {
       baseDir: "."
@@ -98,10 +115,8 @@ gulp.task('browser-sync', ['build'], function() {
 
 gulp.task('watch', ['build'], function()
 {
-  gulp.watch('./src/**/*.styl', ['styles:dev']);
   gulp.watch('./src/**/*.js', ['js:dev']);
-  gulp.watch('./src/**/*.ect', ['ect:dev']);
 });
 
 gulp.task('build', ['clean', 'styles:build', 'js:build', 'ect:build', 'images:build', 'usemin:build']);
-gulp.task('dev', ['build', 'images:dev', 'watch', 'browser-sync']);
+gulp.task('dev', ['build', 'images:dev', 'ect:dev', 'styles:dev', 'watch', 'browser-sync']);

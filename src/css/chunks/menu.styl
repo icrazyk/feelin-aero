@@ -6,10 +6,13 @@
     padding 10px 20px
     float left
     color $menu-color
+    background darken($menu-bg, 5%)
+    border-right 1px solid darken($menu-bg, 8%)
     &__icon
       float left
       width 25px
       margin-right 10px
+      padding-top 1px
       span
         display block
         margin 3px 0
@@ -28,6 +31,9 @@
       padding 10px 20px
       color $menu-color
       text-decoration none
+      font-size 15px
+      @media (min-width: $lg-devices-min)
+        font-size 16px
       &:hover
         background darken($menu-bg, 10%)
       &:active

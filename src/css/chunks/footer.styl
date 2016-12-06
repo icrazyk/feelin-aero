@@ -1,0 +1,17 @@
+.footer
+  @extend .section
+  background url(./img/footer-bg.jpg) no-repeat center bottom
+  padding-top 40px
+  min-height 173px
+  &__col
+    @media (min-width: $sm-devices-min)
+      float left
+      width 33.333%
+    &:not(:first-child)
+      margin-top 20px
+      @media (min-width: $sm-devices-min)
+        margin-top 0
+    &_contact
+    &_metrika
+      @media (min-width: $sm-devices-min)
+        padding-top 10px

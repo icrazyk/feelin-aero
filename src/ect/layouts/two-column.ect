@@ -1,0 +1,17 @@
+<% extend './ect/layouts/base.ect' %>
+<% include './ect/chunks/header' %>
+<% include './ect/chunks/breadcrumbs' %>
+<main class="main main_column_two">
+  <div class="container">
+    <div class="main__row">
+      <div class="main__col main__col_content">
+        <% content %>
+      </div>
+      <div class="main__col main__col_sidebar">
+        <% include './ect/chunks/sidebar' %>
+      </div>
+    </div>
+  </div>
+</main>
+<% include './ect/chunks/widget-service' %>
+<% include './ect/chunks/footer' %>
