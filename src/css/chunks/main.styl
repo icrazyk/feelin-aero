@@ -8,9 +8,16 @@
       font-size 32px
   p
     margin 0 0 1rem
+  .container
+    max-width $main-one-column-max-width
+  &_column_two
+    .container
+      max-width $main-two-column-max-width
   &__row
     clearfix()
     margin 0 -15px
+    &_breadcrumb
+      margin-bottom 15px
   &__col
     padding 0 15px
   &_column_two

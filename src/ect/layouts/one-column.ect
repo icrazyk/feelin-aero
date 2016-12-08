@@ -1,14 +1,18 @@
-<% extend './ect/layouts/base.ect' %>
+<% extend './ect/layouts/base' %>
 <% include './ect/chunks/header' %>
-<% include './ect/chunks/breadcrumbs' %>
 <main class="main">
   <div class="container">
+  	<div class="main__row main__row_breadcrumb">
+  		<% include './ect/chunks/breadcrumb' %>
+  	</div>	
     <div class="main__row">
       <div class="main__col main__col_content">
         <% content %>
       </div>
     </div>
+    <div class="main__row main__row_widget-service">
+      <% include './ect/chunks/widget-service' %>
+    </div>
   </div>
 </main>
-<% include './ect/chunks/widget-service' %>
 <% include './ect/chunks/footer' %>

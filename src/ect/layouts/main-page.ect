@@ -1,4 +1,4 @@
-<% extend './ect/layouts/base.ect' %>
+<% extend './ect/layouts/base' %>
 <% include './ect/chunks/header' %>
 <main class="main">
   <div class="container">
@@ -7,7 +7,9 @@
         <% content %>
       </div>
     </div>
+    <div class="main__row main__row_widget-service">
+      <% include './ect/chunks/widget-service' %>
+    </div>
   </div>
 </main>
-<% include './ect/chunks/widget-service' %>
 <% include './ect/chunks/footer' %>
