@@ -5,6 +5,11 @@ $lg-devices-min = 1200px
 $menu-color = #fff
 $menu-bg = #6666cc
 
+$container-max-width = 1020px
+
+$main-two-column-max-width = $container-max-width
+$main-one-column-max-width = 840px
+
 clearfix()
   zoom 1
   &:after
@@ -36,6 +41,6 @@ body
   background #fff
   line-height 1.375
 
-.page
+.wrapper
   @media (min-width: $md-devices-min)
     background url(img/header-bg.jpg) no-repeat center top
