@@ -1,21 +1,4 @@
 <% extend './ect/layouts/base' %>
 <% include './ect/chunks/header' %>
-<main class="main main_column_two">
-  <div class="container">
-    <div class="main__row main__row_breadcrumb">
-      <% include './ect/chunks/breadcrumb' %>
-    </div>  
-    <div class="main__row">
-      <div class="main__col main__col_content">
-        <% content %>
-      </div>
-      <div class="main__col main__col_sidebar">
-        <% include './ect/chunks/sidebar' %>
-      </div>
-    </div>
-    <div class="main__row main__row_widget-service">
-      <% include './ect/chunks/widget-service' %>
-    </div>
-  </div>
-</main>
+<% include './ect/chunks/main', { breadcrumbs: true, sidebar: true, mod: 'main_column_two' } %>
 <% include './ect/chunks/footer' %>

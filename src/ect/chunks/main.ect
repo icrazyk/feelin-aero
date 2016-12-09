@@ -1,0 +1,22 @@
+<main class="main <%- @mod %> z-index-1">
+  <div class="container">
+    <% if @breadcrumbs : %>
+    <div class="main__row main__row_breadcrumb">
+      <% include './ect/chunks/breadcrumb' %>
+    </div>
+    <% end %>  
+    <div class="main__row">
+      <div class="main__col main__col_content">
+        <% content %>
+      </div>
+      <% if @sidebar : %>
+      <div class="main__col main__col_sidebar">
+        <% include './ect/chunks/sidebar' %>
+      </div>
+      <% end %>
+    </div>
+    <div class="main__row main__row_widget-service">
+      <% include './ect/chunks/widget-service' %>
+    </div>
+  </div>
+</main>
