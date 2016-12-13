@@ -24,9 +24,9 @@
     display none
   .header &
     clearfix()
-    /* background $menu-bg */
-    background rgba(102,102,204,0.9)
-    border-radius 20px
+    background rgba($menu-bg, 0.9)
+    border-radius 8px
+    box-shadow 0 0 20px rgba($menu-bg, 0.6)
     a
       display block
       padding 10px 20px
@@ -48,7 +48,7 @@
         .sub-menu
           display block
       &:first-child > a
-        border-radius 20px 0 0 20px
+        border-radius 10px 0 0 10px
     .sub-menu
       display none
       position absolute

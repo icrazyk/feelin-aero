@@ -1,0 +1,21 @@
+.gallery
+  margin 0 -10px
+  &-item
+    padding: 10px
+    width 50%
+    display inline-block
+    vertical-align top
+    margin 0
+    @media (min-width: $sm-devices-min)
+      width 33.33333%
+  &-icon
+    img
+      width 100%
+      max-width 100%
+      height auto
+      transition opacity 0.3s ease
+      &:hover
+        opacity 0.8
+  &-caption
+    text-align center
+    font-size 0.8em

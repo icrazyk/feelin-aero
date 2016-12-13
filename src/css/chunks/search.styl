@@ -1,0 +1,33 @@
+.search
+  &-form
+    position relative
+  &-field
+    width calc(100% - 35px)
+    height 35px
+    padding 5px 10px
+    border-radius 4px 0 0 4px
+    border 1px solid rgba($menu-bg, 0.7)
+    border-right 0px
+    outline none
+    &:hover
+    &:focus
+      border-color rgba($menu-bg, 1)
+  &-submit
+    @extend .btn
+    width 35px
+    height 35px
+    position absolute
+    right 0
+    top 0
+    border none
+    background-image url(./img/magnifying-glass.svg)
+    background-repeat no-repeat
+    background-position center center
+    background-size 15px auto
+    background-color rgba($menu-bg, 0.7)
+    border-radius 0 4px 4px 0
+    &:hover
+    &:focus
+      background-color rgba($menu-bg, 1)
+    &:active
+      background-color darken($menu-bg, 5%)

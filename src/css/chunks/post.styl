@@ -1,0 +1,18 @@
+.post
+  margin-bottom 20px
+  .entry-title
+    margin-top 0
+  .entry-content
+    clearfix()
+  .more-link
+    @extend .btn;
+    padding 7px 12px
+    border-radius 4px
+    color #fff
+    background-color $menu-bg
+    &:hover
+    &:focus
+      background-color darken($menu-bg, 5%)
+    &:active
+      background-color darken($menu-bg, 10%)
+    
