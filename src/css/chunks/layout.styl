@@ -26,6 +26,24 @@ clearfix()
   &:after
     clear both
 
+make-button(color = #fff, font-size = 1em, bg = #6666cc, pg = 15px, pv = 10px)
+  @extend .btn
+  display inline-block
+  border-radius 4px
+  border 0
+  line-height 1
+  color color
+  font-size font-size
+  padding pv pg
+  background-color bg
+  &:hover
+  &:focus
+    background-color darken(bg, 5%)
+    color color
+  &:active
+    background-color darken(bg, 10%)
+    color color
+
 .section
   clearfix()
   @media (min-width: $md-devices-min)
