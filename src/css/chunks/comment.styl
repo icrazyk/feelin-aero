@@ -1,0 +1,35 @@
+.comment
+  &-reply-title
+    margin-bottom 10px
+  &-form-comment
+    label
+      display block
+    textarea
+      resize none
+      border-radius 4px
+      border 1px solid rgba($menu-bg, 0.7)
+      padding: 10px
+      width 100%
+      height 80px
+      outline none
+      transition height 0.3s ease
+      &:hover
+      &:focus
+        border-color rgba($menu-bg, 1)
+      &.comment-dirty
+      &:focus
+        height 160px
+
+.form-submit
+  input[type="submit"]
+    @extend .btn
+    padding 7px 12px
+    border-radius 4px
+    border 0
+    color #fff
+    background-color $menu-bg
+    &:hover
+    &:focus
+      background-color darken($menu-bg, 5%)
+    &:active
+      background-color darken($menu-bg, 10%)
