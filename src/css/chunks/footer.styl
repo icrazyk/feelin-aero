@@ -2,8 +2,14 @@
   @extend .section
   background url(./img/footer-bg.jpg) no-repeat center bottom
   padding-top 40px
-  min-height 173px
+  &__row
+    clearfix()
+    margin 0 -10px
+    &_content
+      min-height 125px
+      margin-top 20px
   &__col
+    padding 0 10px
     @media (min-width: $sm-devices-min)
       float left
       width 33.333%
