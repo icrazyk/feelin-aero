@@ -74,7 +74,7 @@ function imagesWatch()
 
 function startUsemin()
 {
-  return gulp.src('./build/*.html')
+  return gulp.src('./build/index.html')
     .pipe(usemin())
     .pipe(gulp.dest('./build/'));
 }
