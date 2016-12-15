@@ -82,20 +82,12 @@ function imagesWatch()
   });
 }
 
-function startUsemin()
-{
-  return gulp.src(options.dev + 'index.html')
-    .pipe(usemin())
-    .pipe(gulp.dest(options.dev));
-}
-
 function startBasisjsToolsBuild()
 {
   return gulp.src(options.dev + 'index.html')
-    .pipe(exec('node ./node_modules/basisjs-tools-build/bin/build build -p -b . -f <%= file.path %> -o <%= options.build %>', options))
+    .pipe(exec('node ./node_modules/basisjs-tools-build/bin/build build -b . -f <%= file.path %> -o <%= options.build %>', options))
     .pipe(exec.reporter());
 }
-
 
 //
 // tasks
@@ -123,25 +115,27 @@ gulp.task('ect:dev', startEctWatch);
 gulp.task('images:build', ['clean'], images);
 gulp.task('images:dev', imagesWatch);
 
-gulp.task('usemin:build', ['clean', 'ect:build'], startUsemin);
-
 gulp.task('basisjs-tools-build', ['clean', 'ect:build'], startBasisjsToolsBuild);
 
-gulp.task('browser-sync', ['build'], function() 
+gulp.task('browser-sync', ['init'], function() 
 {
   browserSync.init({
     server: {
-      baseDir: "."
+      baseDir: './dev/',
+      routes: {
+        '/node_modules':'node_modules'
+      }
     }
   });
   gulp.watch(options.dev + '**/*.*').on('change', browserSync.reload);
 });
 
-gulp.task('watch', ['build'], function()
+gulp.task('watch', ['init'], function()
 {
   gulp.watch('./src/**/*.js', ['js:dev']);
 });
 
-gulp.task('init', ['clean', 'styles:build', 'js:build', 'ect:build', 'images:build', 'basisjs-tools-build', 'clean:html']);
+gulp.task('init', ['clean', 'styles:build', 'js:build', 'ect:build', 'images:build']);
+
 gulp.task('build', ['init', 'basisjs-tools-build', 'clean:html']);
 gulp.task('dev', ['init', 'images:dev', 'ect:dev', 'styles:dev', 'watch', 'browser-sync']);
