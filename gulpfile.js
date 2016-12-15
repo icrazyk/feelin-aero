@@ -3,6 +3,7 @@
 const del = require('del');
 const gulp = require('gulp');
 const ect = require('gulp-ect');
+const exec = require('gulp-exec');
 const watch = require('gulp-watch');
 const usemin = require('gulp-usemin');
 const uglify = require('gulp-uglify');
@@ -12,23 +13,32 @@ const plumber = require('gulp-plumber');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
 
+const options  = {
+  build : './build/',
+  src: './src/',
+  css: './src/css/',
+  js: './src/js/',
+  img: './src/img/',
+  dev: './dev/'
+};
+
 //
 // functions
 //
 
 function styles()
 {
-  return gulp.src('./src/css/app.styl')
+  return gulp.src(options.css + 'app.styl')
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(stylus())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./build/'));
+    .pipe(gulp.dest(options.dev));
 }
 
 function stylesWatch()
 {
-  return watch('./src/css/**/*.styl', function() 
+  return watch(options.css + '**/*.styl', function() 
   {
     styles();
   });
@@ -36,23 +46,23 @@ function stylesWatch()
 
 function js()
 {
-  return gulp.src('./src/js/**/*.js')
+  return gulp.src(options.js + '**/*.js')
     .pipe(sourcemaps.init())
     .pipe(concat('app.js'))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./build/'));
+    .pipe(gulp.dest(options.dev));
 }
 
 function startEct()
 {
-  return gulp.src('./src/*.ect')
+  return gulp.src(options.src + '*.ect')
     .pipe(ect())
-    .pipe(gulp.dest('./build/'));
+    .pipe(gulp.dest(options.dev));
 }
 
 function startEctWatch()
 {
-  return watch('./src/**/*.ect', function() 
+  return watch(options.src + '**/*.ect', function() 
   {
     startEct();
   });
@@ -60,13 +70,13 @@ function startEctWatch()
 
 function images()
 {
-  return gulp.src('./src/img/*.{png,jpg,svg}')
-    .pipe(gulp.dest('./build/img/'));
+  return gulp.src(options.img + '*.{png,jpg,svg}')
+    .pipe(gulp.dest(options.dev + 'img/'));
 }
 
 function imagesWatch()
 {
-  return watch('./src/img/*.{jpg,png,svg}', function() 
+  return watch(options.img + '*.{jpg,png,svg}', function() 
   {
     images();
   });
@@ -74,9 +84,16 @@ function imagesWatch()
 
 function startUsemin()
 {
-  return gulp.src('./build/index.html')
+  return gulp.src(options.dev + 'index.html')
     .pipe(usemin())
-    .pipe(gulp.dest('./build/'));
+    .pipe(gulp.dest(options.dev));
+}
+
+function startBasisjsToolsBuild()
+{
+  return gulp.src(options.dev + 'index.html')
+    .pipe(exec('node ./node_modules/basisjs-tools-build/bin/build build -p -b . -f <%= file.path %> -o <%= options.build %>', options))
+    .pipe(exec.reporter());
 }
 
 
@@ -86,7 +103,12 @@ function startUsemin()
 
 gulp.task('clean', function()
 {
-  return del(['./build/']);
+  return del([options.build, options.dev]);
+});
+
+gulp.task('clean:html', ['basisjs-tools-build'], function()
+{
+  return del([options.build + '*.html']);
 });
 
 gulp.task('styles:build', ['clean'], styles);
@@ -103,6 +125,8 @@ gulp.task('images:dev', imagesWatch);
 
 gulp.task('usemin:build', ['clean', 'ect:build'], startUsemin);
 
+gulp.task('basisjs-tools-build', ['clean', 'ect:build'], startBasisjsToolsBuild);
+
 gulp.task('browser-sync', ['build'], function() 
 {
   browserSync.init({
@@ -110,7 +134,7 @@ gulp.task('browser-sync', ['build'], function()
       baseDir: "."
     }
   });
-  gulp.watch("./build/**/*.*").on('change', browserSync.reload);
+  gulp.watch(options.dev + '**/*.*').on('change', browserSync.reload);
 });
 
 gulp.task('watch', ['build'], function()
@@ -118,5 +142,6 @@ gulp.task('watch', ['build'], function()
   gulp.watch('./src/**/*.js', ['js:dev']);
 });
 
-gulp.task('build', ['clean', 'styles:build', 'js:build', 'ect:build', 'images:build', 'usemin:build']);
-gulp.task('dev', ['build', 'images:dev', 'ect:dev', 'styles:dev', 'watch', 'browser-sync']);
+gulp.task('init', ['clean', 'styles:build', 'js:build', 'ect:build', 'images:build', 'basisjs-tools-build', 'clean:html']);
+gulp.task('build', ['init', 'basisjs-tools-build', 'clean:html']);
+gulp.task('dev', ['init', 'images:dev', 'ect:dev', 'styles:dev', 'watch', 'browser-sync']);
