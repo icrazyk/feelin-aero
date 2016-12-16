@@ -115,7 +115,7 @@ gulp.task('ect:dev', startEctWatch);
 gulp.task('images:build', ['clean'], images);
 gulp.task('images:dev', imagesWatch);
 
-gulp.task('basisjs-tools-build', ['clean', 'ect:build'], startBasisjsToolsBuild);
+gulp.task('basisjs-tools-build', ['init'], startBasisjsToolsBuild);
 
 gulp.task('browser-sync', ['init'], function() 
 {
