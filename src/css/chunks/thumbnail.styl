@@ -1,0 +1,39 @@
+.thumbnail
+  padding 0 10px
+  margin-bottom 1em
+  &__row
+    clearfix()
+    margin 0 -20px
+  &__item
+    padding 0 10px
+    margin-bottom 1em
+  &_col
+    &_2 ^[0]__item
+      @media (min-width: $xsl-devices-min)
+        float left
+        width 50%
+    &_3 ^[0]__item
+      @media (min-width: $xsl-devices-min)
+        float left
+        width 50%
+      @media (min-width: $md-devices-min)
+        width 33.333%
+    &_4 ^[0]__item
+      @media (min-width: $xsl-devices-min)
+        float left
+        width 50%
+      @media (min-width: $md-devices-min)
+        width 25%
+
+.thumb-item
+  &:hover
+    img
+      opacity 0.8
+  img
+    width 100%
+    min-width 100%
+    transition opacity 0.5s
+  &__title
+    text-align center
+    @media (min-width: $md-devices-min)
+      font-size 1.2rem
