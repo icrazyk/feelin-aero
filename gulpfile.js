@@ -70,13 +70,13 @@ function startEctWatch()
 
 function images()
 {
-  return gulp.src(options.img + '*.{png,jpg,svg}')
+  return gulp.src(options.img + '**/*.{png,jpg,svg}')
     .pipe(gulp.dest(options.dev + 'img/'));
 }
 
 function imagesWatch()
 {
-  return watch(options.img + '*.{jpg,png,svg}', function() 
+  return watch(options.img + '**/*.{jpg,png,svg}', function() 
   {
     images();
   });

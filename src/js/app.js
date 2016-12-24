@@ -5,7 +5,14 @@ $(".header .menu").clone().appendTo(".menu-mobile");
 
 $(".menu-mobile").mmenu({
   navbar: {
-    title: "Главное меню"
+    title: "Школа пилотов"
+  }
+},
+{
+  classNames: {
+    fixedElements: {
+      fixed: "fixed"
+    }
   }
 });
 
