@@ -7,13 +7,6 @@ $(".menu-mobile").mmenu({
   navbar: {
     title: "Школа пилотов"
   }
-},
-{
-  classNames: {
-    fixedElements: {
-      fixed: "fixed"
-    }
-  }
 });
 
 var API = $(".menu-mobile").data( "mmenu" );
