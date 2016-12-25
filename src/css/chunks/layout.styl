@@ -88,5 +88,13 @@ p
   margin 0 0 1em
   
 .wrapper
+  margin-top 36px
+  background url(img/header-bg.jpg) no-repeat center top
+  background-size contain
+  @media (min-width: $xsl-devices-min)
+    background-size 480px auto
+  @media (min-width: $sm-devices-min)
+    background-size 768px auto
   @media (min-width: $md-devices-min)
-    background url(img/header-bg.jpg) no-repeat center top
+    margin-top 0px
+    background-size 1000px auto

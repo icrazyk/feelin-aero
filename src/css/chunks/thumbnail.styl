@@ -48,17 +48,19 @@
       border-radius 4px 4px 0 0
       position relative
       z-index 1
+      border 1px solid rgba($menu-bg, 0.2)
+      border-bottom none
+      ~/:hover &
+        border 1px solid rgba($menu-bg, 0.5)
+        border-bottom none     
   &__title
     text-align center
     padding 8px 0
     border 1px solid rgba($menu-bg, 0.2)
-    border-top none
     border-radius 0 0 4px 4px
     transition border-color 0.5s
     ~/:hover &
-      border 1px solid rgba($menu-bg, 0.5)
-      border-top none
-      
+      border 1px solid rgba($menu-bg, 0.5)   
     @media (min-width: $sm-devices-min)
       padding 13px 0
     @media (min-width: $md-devices-min)
