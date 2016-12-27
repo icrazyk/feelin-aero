@@ -60,3 +60,15 @@ $('.gallery a').fancybox(
     }
   }
 });
+
+/*
+* Gallery fold
+*/
+
+$('.gallery').each(function(idx, gallery)
+{
+  if($(gallery).find('.gallery-item').length > 9)
+  {
+    console.log('Надо свернуть');
+  }
+});
