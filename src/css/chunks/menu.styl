@@ -18,6 +18,17 @@
         margin 3px 0
         background $menu-color
         height 2px
+        position relative
+        .mm-opening &
+          &:nth-child(2)
+            opacity 0
+          &:nth-child(1)
+            transform rotate(35deg)
+            top 5px
+          &:nth-child(3)
+            transform rotate(-35deg)
+            top -5px
+          
     &__title
       float left
   &-mobile
