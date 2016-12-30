@@ -12,6 +12,7 @@ const stylus = require('gulp-stylus');
 const plumber = require('gulp-plumber');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
+const rev = require('gulp-rev');
 
 const options  = {
   build : './build/',
@@ -135,7 +136,17 @@ gulp.task('watch', ['init'], function()
   gulp.watch('./src/**/*.js', ['js:dev']);
 });
 
+gulp.task('rev', ['init', 'basisjs-tools-build', 'clean:html'], function()
+{
+  gulp.src(options.build + '**/*.{js,css}', {base: options.build})
+    .pipe(gulp.dest(options.build))
+    .pipe(rev())
+    .pipe(gulp.dest(options.build))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest(options.build))
+});
+
 gulp.task('init', ['clean', 'styles:build', 'js:build', 'ect:build', 'images:build']);
 
-gulp.task('build', ['init', 'basisjs-tools-build', 'clean:html']);
+gulp.task('build', ['init', 'basisjs-tools-build', 'clean:html', 'rev']);
 gulp.task('dev', ['init', 'images:dev', 'ect:dev', 'styles:dev', 'watch', 'browser-sync']);
