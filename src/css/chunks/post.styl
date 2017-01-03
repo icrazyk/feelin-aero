@@ -1,9 +1,9 @@
 .post
   margin-bottom 20px
-  .entry-title
-    margin-top 0
-  .entry-content
-    clearfix()
+.entry-title
+  margin-top 0
+.entry-content
+  clearfix()
   .more-link
     @extend .btn;
     padding 7px 12px
@@ -15,4 +15,18 @@
       background-color darken($menu-bg, 5%)
     &:active
       background-color darken($menu-bg, 10%)
-    
+.post-thumbnail
+  display block
+  margin-bottom 1rem
+  @media (min-width: $sm-devices-min)
+    float left
+    margin-right 10px
+  img
+    max-width 100%
+    height auto
+    display block
+    @media (min-width: $sm-devices-min)
+      max-width 210px
+      
+.hentry
+  clearfix()
