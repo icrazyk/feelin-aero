@@ -1,0 +1,35 @@
+.list-teach
+  margin 0
+  padding 0
+  list-style-type none
+  &__item
+    margin-bottom 15px
+    span
+      margin-left 10px
+      display inline-block
+      vertical-align middle
+      width calc(100% - 75px)
+    &:before
+      content ""
+      display inline-block
+      vertical-align middle
+      width 60px
+      height 60px
+      background-repeat no-repeat
+      background-position center center
+      background-size 70%
+      background-color #f1f1f1
+      border 2px solid #dedede
+      border-radius 100%
+    ^[1]
+      &_expanding:before
+        background-image url(./img/ico-expanding.png)
+      &_infinite:before
+        background-image url(./img/ico-infinite.png)
+      &_freedom:before
+        background-image url(./img/ico-freedom.png)        
+      &_freeman:before
+        background-image url(./img/ico-freeman.png)
+      &_brain:before
+        background-image url(./img/ico-brain.png)
+      
