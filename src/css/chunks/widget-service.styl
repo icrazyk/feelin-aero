@@ -5,13 +5,16 @@
   list-style-type none
   text-align center
   &__item
-    float left
+    display inline-block
+    vertical-align top
     padding 0px 15px
     width 50%
     text-align center
     margin-bottom 15px
     @media (min-width: $sm-devices-min)
-      width 25%
+      width 33.33333%
+    @media (min-width: $md-devices-min)
+      width 20%
       margin-bottom 0
     a
       display inline-block
@@ -32,3 +35,5 @@
       background-image url(./img/ico-surprice.png)
     &_ads a:before
       background-image url(./img/ico-ads.png)
+    &_yoda a:before
+      background-image url(./img/ico-yoda.png)
