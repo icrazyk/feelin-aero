@@ -48,9 +48,6 @@ function stylesWatch()
 function js()
 {
   return gulp.src(options.js + '**/*.js')
-    .pipe(sourcemaps.init())
-    .pipe(concat('app.js'))
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest(options.dev));
 }
 
