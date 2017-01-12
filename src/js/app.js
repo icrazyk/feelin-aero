@@ -80,7 +80,7 @@ $('.gallery').each(function(idx, gallery)
 (function ( $ ) {
   $.fn.minWidthShadow = function()
   {
-    function shadowInTable(tableWrapper){
+    function shadowInTable(tableWrapper) {
       var wrapper = tableWrapper,
           wrapperWidth = wrapper.width(),
           table = wrapper.children(),
@@ -112,6 +112,8 @@ $('.gallery').each(function(idx, gallery)
 
     return this.each(function()
     {
+      if($(this).data('shadow')) return true;
+
       /* Template */
       var shadowWrap =  '<div class="shdwtab">'
                           + '<div class="shdwtab__shad shdwtab__shad_lt"></div>'
@@ -128,13 +130,76 @@ $('.gallery').each(function(idx, gallery)
 
       /* Handlers */ 
       newTableWrap.scroll(function() { shadowInTable($(this)); });
+      
       // TODO: this init one and global
       // $(window).resize(function() { shadowInTable($(newTableWrap)); });  
 
       /* Init */ 
       shadowInTable(newTableWrap);
+
+      $(this).data('shadow', true);
     });
   };
 }( jQuery ));
 
-$('table, .winguru').minWidthShadow();
+$('table').minWidthShadow();
+
+/*
+* Fly plavces
+*/
+
+function widgetRender(element)
+{
+  var config = element.data('widgets');
+
+  if(config.rendered) return;
+
+  for(name in config)
+  {
+    switch(name)
+    {
+      case 'meteo':
+        var widget = $('<p><a title="Подробный прогноз погоды" target="_blank"><img alt="" width="120" height="60" border="0" /></a></p>');
+
+        widget
+          .find('a')
+          .attr('href', config[name].link)
+          .find('img')
+          .attr('src', config[name].img);
+
+        widget.appendTo('#' + $(element).data('place') + ' .places-contents-widget');
+
+        break;
+
+      case 'winguru':
+        var id = $(element).data('place') + 'winguru';
+        var widget = $('<p><div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div></p>');
+
+        widget.appendTo('#' + $(element).data('place') + ' .places-contents-widget');
+
+        WgWidget(config[name], id);
+
+        $('body').find('.winguru').minWidthShadow();
+
+        break;
+    }
+  }
+
+  config.rendered = true;
+  element.data('widgets', config);
+}
+
+widgetRender($('.places-tabs__item_active'));
+
+$('.places-tabs__item').on('click', function()
+{
+  if($(this).hasClass('places-tabs__item_active')) return;
+
+  $('.places-tabs__item').removeClass('places-tabs__item_active');
+  $(this).addClass('places-tabs__item_active');
+
+  widgetRender($(this));
+
+  $('.places-contents__item').removeClass('places-contents__item_active');
+  $('#' + $(this).data('place')).addClass('places-contents__item_active');
+});

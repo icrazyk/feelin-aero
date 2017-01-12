@@ -1,130 +1,203 @@
 <% extend './ect/layouts/one-column' %>
 <% block 'title' : %>Места полётов<% end %>
 
+<!--
 <p class="embed-responsive"><iframe src="https://maps.google.ru/maps/ms?msa=0&amp;msid=200158442280093737188.0004c2d0328930b786db4&amp;hl=ru&amp;ie=UTF8&amp;t=m&amp;ll=51.920556,55.783081&amp;spn=1.62624,3.515625&amp;z=8&amp;output=embed" width="640" height="480" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></p>
 <p>Просмотреть <a style="color: #0000ff; text-align: left;" href="https://maps.google.ru/maps/ms?msa=0&amp;msid=200158442280093737188.0004c2d0328930b786db4&amp;hl=ru&amp;ie=UTF8&amp;t=m&amp;ll=51.920556,55.783081&amp;spn=1.62624,3.515625&amp;z=8&amp;source=embed">на карте большего размера</a></p>
+-->
+
+<div><script src="http://widget.windguru.cz/js/wg_widget.php" type="text/javascript"></script></div>
+
 <h2>Летные места Оренбургской области по степени удаленности</h2>
 
 <div class="places">
   <div class="places__tabs">
-    <ul>
-      <li>
-        <span 
-          data-widgets='{"winguru":{"s":74531,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false},"meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100015","img":"http://meteo.paraplan.net/informer/2-100015.gif?28918"}}'
-          >
+    <ul class="places-tabs">
+      <li class="places-tabs__item places-tabs__item_active"
+        data-place="place-1"
+        data-widgets='{"winguru":{"s":74531,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false},"meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100015","img":"http://meteo.paraplan.net/informer/2-100015.gif?28918"}}'
+        >
+        <span >
           Гребени
         </span>
       </li>
-      <li>
-        <span
-          data-widgets='{"meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100018","img":"http://meteo.paraplan.net/informer/2-100018.gif?94389"}}'
-          >
+      <li class="places-tabs__item"
+        data-place="place-2"
+        data-widgets='{"meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100018","img":"http://meteo.paraplan.net/informer/2-100018.gif?94389"}}'
+        >
+        <span>
           Фавор
         </span>
       </li>
-      <li>
-        <span
-          data-widgets='{"winguru":{"s":334217,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false},"meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100014","img":"http://meteo.paraplan.net/informer/2-100014.gif?27876"}}'
-          >
+      <li class="places-tabs__item"
+        data-place="place-3"
+        data-widgets='{"winguru":{"s":334217,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false},"meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100014","img":"http://meteo.paraplan.net/informer/2-100014.gif?27876"}}'
+        >
+        <span>
           Марьевка
         </span>
       </li>
-      <li>
-        <span
-          data-widgets='{"winguru":{"s":401347,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false},"meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100016","img":"http://meteo.paraplan.net/informer/2-100016.gif?80693"}}'
-          >
+      <li class="places-tabs__item"
+        data-place="place-4"
+        data-widgets='{"winguru":{"s":401347,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false},"meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100016","img":"http://meteo.paraplan.net/informer/2-100016.gif?80693"}}'
+        >
+        <span>
           Анатольевка
         </span>
       </li>
-      <li>
-        <span
-          data-widgets='{"winguru": {"s":308237,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false}}'
-          >
+      <li class="places-tabs__item"
+        data-place="place-5"
+        data-widgets='{"winguru": {"s":308237,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false}}'
+        >
+        <span>
           Буланово
         </span>
       </li>
-      <li>
-        <span
-          data-widgets='{"winguru": {"s":246026,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":true,"link_new_window":false}, "meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100017","img":"http://meteo.paraplan.net/informer/2-100017.gif?69662"}}'
-          >
+      <li class="places-tabs__item"
+        data-place="place-6"
+        data-widgets='{"winguru": {"s":246026,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":true,"link_new_window":false}, "meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100017","img":"http://meteo.paraplan.net/informer/2-100017.gif?69662"}}'
+        >
+        <span>
           Маячная
         </span>
       </li>
-      <li>
-        <span
-          data-widgets='{"meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100013","img": "http://meteo.paraplan.net/informer/2-100013.gif?6505"}}'
-          >
+      <li class="places-tabs__item"
+        data-place="place-7"
+        data-widgets='{"meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100013","img": "http://meteo.paraplan.net/informer/2-100013.gif?6505"}}'
+        >
+        <span>
           Верблюжка
+        </span>
+      </li>
+      <li class="places-tabs__item"
+        data-place="place-8"
+        data-widgets='{"winguru": {"s":248081,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false}}'
+        >
+        <span>
+          Новогофарово
+        </span>
+      </li>
+      <li class="places-tabs__item"
+        data-place="place-9"
+        data-widgets='{"meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100012","img":"http://meteo.paraplan.net/informer/2-100012.gif?81432"}}'
+        >
+        <span>
+          Андреевка
+        </span>
+      </li>
+      <li class="places-tabs__item"
+        data-place="place-10"
+        data-widgets='{"winguru": {"s":338885,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false}, "meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100010","img":"http://meteo.paraplan.net/informer/2-100010.gif?80545"}}'
+        >
+        <span>
+          Тазларово
+        </span>
+      </li>
+      <li class="places-tabs__item"
+        data-place="place-11"
+        data-widgets='{"winguru": {"s":308232,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false}, "meteo":{"link":"http://meteo.paraplan.net/forecast/summary.html?place=100011","img":"http://meteo.paraplan.net/informer/2-100011.gif?97685"}}'
+        >
+        <span>
+          Кувандык
         </span>
       </li>
     </ul>
   </div>
   <div class="places__contents">
-    <ul>
-      <li>
+    <ul class="places-contents">
+      <li id="place-1" class="places-contents__item places-contents__item_active">
         <h2>Гребени</h2>
+        <div class="places-contents-widget"></div>
+        <h3>Описание</h3>
         <p>Холм с превышением 100 м под ЗСЗ и Северо-Западный ветер. Протяженность линии склона около 400м. Есть заезд на вершину. Координаты: 51 56'30"N 55 16'45"E</p>
+        <h3>Как проехать</h3>
+        <div class="places-contents-map"></div>
       </li>
-      <li>
+      <li id="place-2" class="places-contents__item">
         <h2>Фавор</h2>
+        <div class="places-contents-widget"></div>
+        <h3>Описание</h3>
         <p>Холм с превышением 80м под Восточный ветер. Протяженность линии склона около 200м. Есть заезд на вершину. Координаты: 52 12'00"N 55 17'27"E</p>
+        <h3>Как проехать</h3>
+        <div class="places-contents-map"></div>
       </li>
-      <li>
+      <li id="place-3" class="places-contents__item">
         <h2>Марьевка</h2>
+        <div class="places-contents-widget"></div>
+        <h3>Описание</h3>
         <p>Холм с превышением 65м под Южный и Юго-Западный ветер. Протяженность линии склона около 200м. Есть заезд на вершину. Координаты: 52 15'37"N 55 16'50"E</p>
+        <h3>Как проехать</h3>
+        <div class="places-contents-map"></div>
       </li>
-      <li>
+      <li id="place-4" class="places-contents__item">
         <h2>Анатольевка</h2>
+        <div class="places-contents-widget"></div>
+        <h3>Описание</h3>
         <p>Холм с превышением 80м под Западный ветер(ЗЮЗ-ЗСЗ). Протяженность линии склона около 1000м. Есть заезд на вершину. Координаты: 52 08'38"N 55 23'16"E</p>
+        <h3>Как проехать</h3>
+        <div class="places-contents-map"></div>
       </li>
-      <li>
+      <li id="place-5" class="places-contents__item">
         <h2>Буланово</h2>
+        <div class="places-contents-widget"></div>
+        <h3>Описание</h3>
         <p>Холм с превышением 75м под Юго-Западный. 87 км трассы Оренбург-Казань, находится справа от трассы. Протяженность линии склона около 300м. Координаты: 52 27'03"N 55 11'50"E</p>
+        <h3>Как проехать</h3>
+        <div class="places-contents-map"></div>
       </li>
-      <li>
+      <li id="place-6" class="places-contents__item">
         <h2>Маячная</h2>
+        <div class="places-contents-widget"></div>
+        <h3>Описание</h3>
         <p>Холм с превышением 75м под Северный и Северо-Восточный ветер.125 км трассы Оренбург-Орск, находится справа от трассы. Протяженность линии склона около 450м. Есть заезд на вершину. Координаты:51 23'35"N 56 40'45"E</p>
+        <h3>Как проехать</h3>
+        <div class="places-contents-map"></div>
       </li>
-      <li>
+      <li id="place-7" class="places-contents__item">
         <h2>Верблюжка</h2>
+        <div class="places-contents-widget"></div>
+        <h3>Описание</h3>
         <p>Холм с превышением 188м под Восточный, Северо-Восточный и Южный ветер. 132 км трассы Оренбург-Орск, находится справа от трассы. Протяженность линии склона около 300м. Есть заезд на вершину для 4х4. Координаты: 51 23'14"N 56 48'09"E</p>
+        <h3>Как проехать</h3>
+        <div class="places-contents-map"></div>
+      </li>
+      <li id="place-8" class="places-contents__item">
+        <h2>Новогофарово</h2>
+        <div class="places-contents-widget"></div>
+        <h3>Описание</h3>
+        <p>Гора на западный ветер, недалеко от д. Новогафарово. Перепад высот: 152 метра. Протяженность склона: 1600 метров. Координаты места: 51°37'43.15" N 56°40'33.99" E. Есть заезд на вершину.</p>
+        <h3>Как проехать</h3>
+        <div class="places-contents-map"></div>
+      </li>
+      <li id="place-9" class="places-contents__item">
+        <h2>Андреевка</h2>
+        <div class="places-contents-widget"></div>
+        <h3>Описание</h3>
+        <p>Холм с превышением 220м под Западный ветер. Протяженность линии склона около 500м. Координаты:51 55'43"N 56 39'31"E. Холм с максимальным превышением 235м под Юго-Западный и Северо-Восточный ветер. Протяженность линии склона около 1600м. Координаты:51 57'08"N 56 41'18"E</p>
+        <h3>Как проехать</h3>
+        <div class="places-contents-map"></div>
+      </li>
+      <li id="place-10" class="places-contents__item">
+        <h2>Тазларово</h2>
+        <div class="places-contents-widget"></div>
+        <h3>Описание</h3>
+        <p>Холм с превышением 230м под Юго-Западный и Юго-Восточный ветер. Протяженность линии склона около 400м. Координаты: 52 08'26"N 56 43'17"E</p>
+        <h3>Как проехать</h3>
+        <div class="places-contents-map"></div>
+      </li>
+      <li id="place-11" class="places-contents__item">
+        <h2>Кувандык</h2>
+        <div class="places-contents-widget"></div>
+        <h3>Описание</h3>
+        <p>Гора Шайтан с превышением 220м под Северо-Западный (ССЗ-ЗСЗ). Координаты: 51 31'14"N 57 23'37"E</p>
+        <h3>Как проехать</h3>
+        <div class="places-contents-map"></div>
       </li>
     </ul>
   </div>
 </div>
 
-<div><script src="http://widget.windguru.cz/js/wg_widget.php" type="text/javascript"></script></div>
-
-<h2>Новогофарово</h2>
-<p>Гора на западный ветер, недалеко от д. Новогафарово.</p>
-<ul>
-  <li>Координаты места: 51°37'43.15" N 56°40'33.99" E</li>
-  <li>Перепад высот: 152 метра</li>
-  <li>Протяженность склона: 1600 метров</li>
-  <li>Есть заезд на вершину.</li>
-</ul>
-<p><script>
-  //<![CDATA[ 
-  WgWidget({ s: 248081, odh:0, doh:24, wj:'msd', tj:'c', waj:'m', fhours:72, lng:'ru', params: ['WINDSPD','GUST','SMER','TMPE','CDC','APCPs'], first_row:true, spotname:true, first_row_minfo:true, last_row:true, lat_lon:true, tz:true, sun:true, link_archive:false, link_new_window:false }, 'wg_target_div_248081_61952465' ); 
-  //]]>
-  </script></p>
-<div style="min-width:724px" class="winguru"><div id="wg_target_div_248081_61952465"></div></div>
-<h2>Андреевка</h2>
-<p>Холм с превышением 220м под Западный ветер. Протяженность линии склона около 500м. Координаты:51 55'43"N 56 39'31"E. Холм с максимальным превышением 235м под Юго-Западный и Северо-Восточный ветер. Протяженность линии склона около 1600м. Координаты:51 57'08"N 56 41'18"E</p>
-<p><a title="Подробный прогноз погоды" href="http://meteo.paraplan.net/forecast/summary.html?place=100012" target="_blank"><img src="http://meteo.paraplan.net/informer/2-100012.gif?81432" alt="" width="120" height="60" border="0" /></a></p>
-<h2>Тазларово</h2>
-<p>Холм с превышением 230м под Юго-Западный и Юго-Восточный ветер.</p>
-<p>Протяженность линии склона около 400м.</p>
-<p>Координаты: 52 08'26"N 56 43'17"E</p>
-<p><a title="Подробный прогноз погоды" href="http://meteo.paraplan.net/forecast/summary.html?place=100010" target="_blank"><img src="http://meteo.paraplan.net/informer/2-100010.gif?80545" alt="" width="120" height="60" border="0" /></a></p>
-<p><script>
-  //<![CDATA[ 
-  WgWidget({ s: 338885, odh:0, doh:24, wj:'msd', tj:'c', waj:'m', fhours:72, lng:'ru', params: ['WINDSPD','GUST','SMER','TMPE','CDC','APCPs'], first_row:true, spotname:true, first_row_minfo:true, last_row:true, lat_lon:true, tz:true, sun:true, link_archive:false, link_new_window:false }, 'wg_target_div_338885_72265052' ); 
-  //]]>
-  </script></p>
-<div style="min-width:724px" class="winguru"><div id="wg_target_div_338885_72265052"></div></div>
-<h2>Кувандык</h2>
-<p>Гора Шайтан с превышением 220м под Северо-Западный (ССЗ-ЗСЗ). Координаты: 51 31'14"N 57 23'37"E</p>
+<!--
 <p><a title="Подробный прогноз погоды" href="http://meteo.paraplan.net/forecast/summary.html?place=100011" target="_blank"><img src="http://meteo.paraplan.net/informer/2-100011.gif?97685" alt="" width="120" height="60" border="0" /></a></p>
 <p><script>
   //<![CDATA[ 
@@ -132,3 +205,4 @@
   //]]>
   </script></p>
 <div style="min-width:724px" class="winguru"><div id="wg_target_div_308232_58543242"></div></div>
+-->
