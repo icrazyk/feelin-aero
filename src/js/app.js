@@ -122,20 +122,20 @@ $('.gallery').each(function(idx, gallery)
                       + '</div>';
       
       /* Add template */
-      var newTable = $(shadowWrap).insertBefore($(this));
-      var newTableWrap = newTable.find('.shdwtab__wrap');
+      $(shadowWrap)
+        .insertBefore($(this))
+        .find('.shdwtab__wrap')
+        .scroll(function() { 
+          shadowInTable($(this)); 
+        })
+        .append($(this));
 
-      /* Wrap to template */
-      newTableWrap.append($(this));
-
-      /* Handlers */ 
-      newTableWrap.scroll(function() { shadowInTable($(this)); });
       
       // TODO: this init one and global
       // $(window).resize(function() { shadowInTable($(newTableWrap)); });  
 
-      /* Init */ 
-      shadowInTable(newTableWrap);
+      /* Init */
+      shadowInTable($(this).closest('.shdwtab__wrap'));
 
       $(this).data('shadow', true);
     });
@@ -152,7 +152,9 @@ function widgetRender(element)
 {
   var config = element.data('widgets');
 
-  if(config.rendered) return;
+  if(config && config.rendered) return;
+
+  config = {};
 
   for(name in config)
   {
@@ -172,14 +174,25 @@ function widgetRender(element)
         break;
 
       case 'winguru':
-        var id = $(element).data('place') + 'winguru';
-        var widget = $('<p><div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div></p>');
+        var id = $(element).data('place') + '-winguru';
+        var widget = $('<div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div>');
 
         widget.appendTo('#' + $(element).data('place') + ' .places-contents-widget');
 
         WgWidget(config[name], id);
 
-        $('body').find('.winguru').minWidthShadow();
+        widget.minWidthShadow();
+
+        // var timer = setInterval(function() 
+        // {
+
+              // В minWidthShadow добавить метод update (по сути вызов функции shadowInTable) и дергать его тут widget.minWidthShadow('update');
+
+        //   if($(widget).find('.wgfcst')) 
+        //   {
+        //     clearInterval(timer);
+        //   }
+        // }, 300);
 
         break;
     }
