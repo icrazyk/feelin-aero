@@ -74,71 +74,113 @@ $('.gallery').each(function(idx, gallery)
 });
 
 /*
-* Min Width Shadow
+* Min Width Shadow jQuery plugin
 */
 
 (function ( $ ) {
-  $.fn.minWidthShadow = function()
+
+  function refresh(element)
   {
-    function shadowInTable(tableWrapper) {
-      var wrapper = tableWrapper,
-          wrapperWidth = wrapper.width(),
-          table = wrapper.children(),
-          tableWidth = table.width(),
-          leftShadow = wrapper.siblings('.shdwtab__shad_lt'),
-          rightShadow = wrapper.siblings('.shdwtab__shad_rt'),
-          scrollLeft = wrapper.scrollLeft(),
-          scrollRight = tableWidth - scrollLeft - wrapperWidth,
-          visibleClass = 'shdwtab__shad_visible';
+    var wrapper = element.closest('.shdwtab__wrap'),
+        wrapperWidth = wrapper.width(),
+        table = wrapper.children(),
+        tableWidth = table.width(),
+        leftShadow = wrapper.siblings('.shdwtab__shad_lt'),
+        rightShadow = wrapper.siblings('.shdwtab__shad_rt'),
+        scrollLeft = wrapper.scrollLeft(),
+        scrollRight = tableWidth - scrollLeft - wrapperWidth,
+        visibleClass = 'shdwtab__shad_visible';
 
-      // Left shadow
-      if(scrollLeft > 5){
-        leftShadow.addClass(visibleClass)
-        leftShadow.css({'opacity' : scrollLeft / 100})
-      }else{
-        leftShadow.removeClass(visibleClass)
-        leftShadow.css({'opacity' : ''})
-      }
-
-      // Right shadow
-      if(scrollRight > 5){
-        rightShadow.addClass(visibleClass)
-        rightShadow.css({'opacity' : scrollRight / 100})
-      }else{
-        rightShadow.removeClass(visibleClass)
-        rightShadow.css({'opacity' : ''})
-      }
+    // Left shadow
+    if(scrollLeft > 5){
+      leftShadow.addClass(visibleClass)
+      leftShadow.css({'opacity' : scrollLeft / 100})
+    }else{
+      leftShadow.removeClass(visibleClass)
+      leftShadow.css({'opacity' : ''})
     }
 
-    return this.each(function()
+    // Right shadow
+    if(scrollRight > 5){
+      rightShadow.addClass(visibleClass)
+      rightShadow.css({'opacity' : scrollRight / 100})
+    }else{
+      rightShadow.removeClass(visibleClass)
+      rightShadow.css({'opacity' : ''})
+    }
+  }
+
+  var methods = 
+  {
+    init: function()
     {
-      if($(this).data('shadow')) return true;
+      return this.each(function()
+      {
+        var $this = $(this),
+            data = $this.data('shadow');
 
-      /* Template */
-      var shadowWrap =  '<div class="shdwtab">'
-                          + '<div class="shdwtab__shad shdwtab__shad_lt"></div>'
-                          + '<div class="shdwtab__shad shdwtab__shad_rt"></div>'
-                          + '<div class="shdwtab__wrap"></div>'
-                      + '</div>';
-      
-      /* Add template */
-      $(shadowWrap)
-        .insertBefore($(this))
-        .find('.shdwtab__wrap')
-        .scroll(function() { 
-          shadowInTable($(this)); 
-        })
-        .append($(this));
+        if(data) return true;
 
-      
-      // TODO: this init one and global
-      // $(window).resize(function() { shadowInTable($(newTableWrap)); });  
+        /* Template */
+        var shadowWrap =  '<div class="shdwtab">'
+                            + '<div class="shdwtab__shad shdwtab__shad_lt"></div>'
+                            + '<div class="shdwtab__shad shdwtab__shad_rt"></div>'
+                            + '<div class="shdwtab__wrap"></div>'
+                        + '</div>';
+        
+        /* Add template */
+        $(shadowWrap)
+          .insertBefore($this)
+          .find('.shdwtab__wrap')
+          .on('scroll', function() 
+          { 
+            refresh($this); 
+          })
+          .append($this);
+        
+        // TODO: this init one and global
+        $(window).on('resize', function() 
+        {
+          refresh($this);
+        });  
 
-      /* Init */
-      shadowInTable($(this).closest('.shdwtab__wrap'));
+        /* Init */
+        refresh($this.closest('.shdwtab__wrap'));
 
-      $(this).data('shadow', true);
-    });
+        $this.data('shadow', {
+          target: $this
+        });
+      })
+    },
+    refresh: function()
+    {
+      return this.each(function()
+      {
+        var $this = $(this),
+            data = $this.data('shadow');
+            refresh($this);
+      });
+    }
+  }
+
+  /*
+  * jQuery interface
+  */
+
+  $.fn.minWidthShadow = function(method)
+  {
+    if(methods[method])
+    {
+      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+    }
+    else if(typeof method === 'object' || ! method)
+    {
+      return methods.init.apply(this, arguments);
+    }
+    else
+    {
+      $.error('The method ' + method + ' does not exist on jQurey.minWidthShadow');
+    }
   };
 }( jQuery ));
 
@@ -154,51 +196,49 @@ function widgetRender(element)
 
   if(config && config.rendered) return;
 
-  config = {};
-
   for(name in config)
   {
     switch(name)
     {
       case 'meteo':
-        var widget = $('<p><a title="Подробный прогноз погоды" target="_blank"><img alt="" width="120" height="60" border="0" /></a></p>');
+        var widget_meteo = $('<p><a title="Подробный прогноз погоды" target="_blank"><img alt="" width="120" height="60" border="0" /></a></p>');
 
-        widget
+        widget_meteo
           .find('a')
           .attr('href', config[name].link)
           .find('img')
           .attr('src', config[name].img);
 
-        widget.appendTo('#' + $(element).data('place') + ' .places-contents-widget');
+        widget_meteo.appendTo('#' + $(element).data('place') + ' .places-contents-widget');
 
         break;
 
       case 'winguru':
         var id = $(element).data('place') + '-winguru';
-        var widget = $('<div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div>');
+        var widget_winguru = $('<div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div>');
 
-        widget.appendTo('#' + $(element).data('place') + ' .places-contents-widget');
+        widget_winguru.appendTo('#' + $(element).data('place') + ' .places-contents-widget');
 
         WgWidget(config[name], id);
 
-        widget.minWidthShadow();
+        widget_winguru.minWidthShadow();
 
-        // var timer = setInterval(function() 
-        // {
-
-              // В minWidthShadow добавить метод update (по сути вызов функции shadowInTable) и дергать его тут widget.minWidthShadow('update');
-
-        //   if($(widget).find('.wgfcst')) 
-        //   {
-        //     clearInterval(timer);
-        //   }
-        // }, 300);
+        var timer = setInterval(function() 
+        {
+          if($(widget_winguru).find('.wgfcst')) 
+          {
+            widget_winguru.minWidthShadow('refresh'); 
+            clearInterval(timer);
+          }
+        }, 100);
 
         break;
     }
   }
 
+  config = {};
   config.rendered = true;
+
   element.data('widgets', config);
 }
 
