@@ -242,7 +242,10 @@ function widgetRender(element)
   element.data('widgets', config);
 }
 
-widgetRender($('.places-tabs__item_active'));
+if($('.places-tabs__item_active').length)
+{
+  widgetRender($('.places-tabs__item_active'));
+}
 
 $('.places-tabs__item').on('click', function()
 {
@@ -256,3 +259,34 @@ $('.places-tabs__item').on('click', function()
   $('.places-contents__item').removeClass('places-contents__item_active');
   $('#' + $(this).data('place')).addClass('places-contents__item_active');
 });
+
+function setHash(properties)
+{
+  var hash = [];
+
+  for(var key in properties)
+  {
+    hash.push(key + '=' + properties[key]);
+  }
+
+  hash = '#' + hash.join('&');
+  location.hash = hash;
+
+  return properties;
+}
+
+function getHash()
+{
+  var unSerialize = {},
+      hashString = location.hash.substr(1),
+      hashArray = hashString.split('&');
+
+  for(index in hashArray)
+  {
+    var hash = hashArray[index].split('=');
+    unSerialize[hash[0]] = hash[1];
+  }
+
+  return unSerialize;
+}
+
