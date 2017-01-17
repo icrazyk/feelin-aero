@@ -242,23 +242,49 @@ function widgetRender(element)
   element.data('widgets', config);
 }
 
-if($('.places-tabs__item_active').length)
+if($('#fly-places'))
 {
-  widgetRender($('.places-tabs__item_active'));
+  var hash = getHash();
+
+  if(hash['place'])
+  {
+    setPlace($('.places-tabs__item[data-place="' + hash['place'] + '"]'));
+  }
+  else
+  {
+    console.log('fire');
+    setPlace($('.places-tabs__item_active'));
+  }
+
+  $('.places-tabs__item').on('click', function()
+  {
+    setPlace($(this));
+  });
 }
 
-$('.places-tabs__item').on('click', function()
+function setPlace(place)
 {
-  if($(this).hasClass('places-tabs__item_active')) return;
+  if(place.hasClass('places-tabs__item_active') && place.data('widgets').rendered) return;
+
+  widgetRender(place);
+
+  var hash = getHash(),
+      placeId = place.data('place');
+
+  $.extend(
+    hash, 
+    {
+      'place': placeId
+    });
+  
+  setHash(hash);
 
   $('.places-tabs__item').removeClass('places-tabs__item_active');
-  $(this).addClass('places-tabs__item_active');
-
-  widgetRender($(this));
+  place.addClass('places-tabs__item_active');
 
   $('.places-contents__item').removeClass('places-contents__item_active');
-  $('#' + $(this).data('place')).addClass('places-contents__item_active');
-});
+  $('#' + place.data('place')).addClass('places-contents__item_active');
+}
 
 function setHash(properties)
 {
@@ -284,7 +310,11 @@ function getHash()
   for(index in hashArray)
   {
     var hash = hashArray[index].split('=');
-    unSerialize[hash[0]] = hash[1];
+
+    if(hash[0] && hash[1])
+    {
+      unSerialize[hash[0]] = hash[1];
+    }
   }
 
   return unSerialize;
