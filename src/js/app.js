@@ -252,7 +252,6 @@ if($('#fly-places'))
   }
   else
   {
-    console.log('fire');
     setPlace($('.places-tabs__item_active'));
   }
 
