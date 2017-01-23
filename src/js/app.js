@@ -201,15 +201,9 @@ function widgetRender(element)
     switch(name)
     {
       case 'meteo':
-        var widget_meteo = $('<p><a title="Подробный прогноз погоды" target="_blank"><img alt="" width="120" height="60" border="0" /></a></p>');
+        var widget_meteo = $('<a href=' + config[name].link + ' title="Подробный прогноз погоды" target="_blank"><img src=' + config[name].img + 'alt="" width="120" height="60" border="0" /></a>');
 
-        widget_meteo
-          .find('a')
-          .attr('href', config[name].link)
-          .find('img')
-          .attr('src', config[name].img);
-
-        widget_meteo.appendTo('#' + $(element).data('place') + ' .places-contents-widget');
+        widget_meteo.appendTo('#' + $(element).data('place') + ' .places-contents-widget__item_' + name);
 
         break;
 
@@ -217,7 +211,7 @@ function widgetRender(element)
         var id = $(element).data('place') + '-winguru';
         var widget_winguru = $('<div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div>');
 
-        widget_winguru.appendTo('#' + $(element).data('place') + ' .places-contents-widget');
+        widget_winguru.appendTo('#' + $(element).data('place') + ' .places-contents-widget__item_' + name);
 
         WgWidget(config[name], id);
 
@@ -231,6 +225,25 @@ function widgetRender(element)
             clearInterval(timer);
           }
         }, 100);
+
+        break;
+
+      case 'gismeteo':
+        if(!window.is_init_gismeteo)
+        {
+          window.is_init_gismeteo = true;
+          $("head").append($('<link rel="stylesheet" type="text/css" href="https://nst1.gismeteo.ru/assets/flat-ui/legacy/css/informer.min.css">'));
+        }
+
+        var gmHash = config[name].hash,
+            gmUrl = config[name].url,
+            gmId = 'gsInformerID-' + gmHash,
+            gmName = element.find('span').text()
+
+        var widget_gismeteo = '<div id="' + gmId + '" class="gsInformer" style="width:275px;height:174px"><div class="gsIContent"><div id="cityLink"><a href="https://www.gismeteo.ru/' + gmUrl + '/" target="_blank">Погода в ' + gmName + '</a></div><div class="gsLinks"><table><tr><td><div class="leftCol"><a href="https://www.gismeteo.ru/" target="_blank"><img alt="Gismeteo" title="Gismeteo" src="https://nst1.gismeteo.ru/assets/flat-ui/img/logo-mini2.png" align="middle" border="0" /><span>Gismeteo</span></a></div><div class="rightCol"><a href="https://www.gismeteo.ru/' + gmUrl + '/2-weeks/" target="_blank">Прогноз на 2 недели</a></div></td></tr></table></div></div></div>';
+        var widget_gismeteo_script = '<script async src="https://www.gismeteo.ru/api/informer/getinformer/?hash=' + gmHash + '" type="text/javascript"></script>';
+
+        $(widget_gismeteo + widget_gismeteo_script).appendTo('#' + $(element).data('place') + ' .places-contents-widget__item_' + name);
 
         break;
     }
