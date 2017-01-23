@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <h2>Первый</h2>
+  <div style="margin-bottom:25px">
+  <!-- Gismeteo informer START -->
+  <link rel="stylesheet" type="text/css" href="https://nst1.gismeteo.ru/assets/flat-ui/legacy/css/informer.min.css">
+  <div id="gsInformerID-Cq1fw6ygG7rPk6" class="gsInformer" style="width:280px;height:235px">
+    <div class="gsIContent">
+      <div id="cityLink">
+      <a href="https://www.gismeteo.ru/weather-grebeni-182249/" target="_blank">Погода в Гребенях</a>
+      </div>
+      <div class="gsLinks">
+        <table>
+          <tr>
+              <td>
+              <div class="leftCol">
+                <a href="https://www.gismeteo.ru/" target="_blank">
+                  <img alt="Gismeteo" title="Gismeteo" src="https://nst1.gismeteo.ru/assets/flat-ui/img/logo-mini2.png" align="middle" border="0" />
+                  <span>Gismeteo</span>
+                </a>
+              </div>
+              <div class="rightCol">
+                <a href="https://www.gismeteo.ru/weather-grebeni-182249/2-weeks/" target="_blank">Прогноз на 2 недели</a>
+              </div>
+              </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script async src="https://www.gismeteo.ru/api/informer/getinformer/?hash=Cq1fw6ygG7rPk6" type="text/javascript"></script>
+  <!-- Gismeteo informer END -->
+  </div>
+
+  <h2>Второй</h2>
+  <!-- Gismeteo Informer (begin) -->
+  <div id="GMI_120x240-3_ru" class="gm-info">
+      <div style="position:relative;width:120px;height:240px;border:solid 1px;background:#F5F5F5;border-color:#EAEAEA #E4E4E4 #DDDDDD #E6E6E6;border-radius:4px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;">
+          <a style="font:11px/13px Arial,Verdana,sans-serif;text-align:center;text-overflow:ellipsis;text-decoration:none;display:block;overflow:hidden;margin:2px 3px;color:#0678CD;" href="https://gismeteo.ru/weather-grebeni-182249/">Гребени</a>
+          <a style="font:9px/11px Tahoma,Arial,sans-serif;letter-spacing:0.5px;text-align:center;text-decoration:none;position:absolute;bottom:3px;left:0;width:100%;color:#333;" href="https://gismeteo.ru"><span style="color:#0099FF;">Gis</span>meteo</a>
+      </div>
+  </div>
+  <script type="text/javascript">
+  (function() {
+      var
+          d = this.document,
+          o = this.navigator.userAgent.match(/MSIE (6|7|8)/) ? true : false,
+          s = d.createElement('script');
+  
+      s.src  = 'https://www.gismeteo.ru/informers/simple/install/';
+      s.type = 'text/javascript';
+      s[(o ? 'defer' : 'async')] = true;
+      s[(o ? 'onreadystatechange' : 'onload')] = function() {
+          try {new GmI({
+              slug : '79ad7fac48bbae725cefd3c289c936c2',
+              type : '120x240-3',
+              city : '182249',
+              lang : 'ru'
+          })} catch (e) {}
+      }
+  
+      d.body.appendChild(s);
+  })();
+  </script>
+  <!-- Gismeteo Informer (finish) -->
+</body>
+</html>
