@@ -201,17 +201,18 @@ function widgetRender(element)
     switch(name)
     {
       case 'meteo':
-        var widget_meteo = $('<a href=' + config[name].link + ' title="Подробный прогноз погоды" target="_blank"><img src=' + config[name].img + 'alt="" width="120" height="60" border="0" /></a>');
-
-        widget_meteo.appendTo('#' + $(element).data('place') + ' .places-contents-widget__item_' + name);
+        var widget_meteo = '<a href=' + config[name].link + ' title="Подробный прогноз погоды" target="_blank"><img src=' + config[name].img + 'alt="" width="120" height="60" border="0" /></a>';
+        widget_meteo = $(widgetWrap(widget_meteo, name));
+        widget_meteo.appendTo('#' + $(element).data('place') + ' .places-contents-widget__row_two');
 
         break;
 
       case 'winguru':
         var id = $(element).data('place') + '-winguru';
-        var widget_winguru = $('<div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div>');
+        var widget_winguru = '<div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div>';
+        widget_winguru = $(widgetWrap(widget_winguru, name));
 
-        widget_winguru.appendTo('#' + $(element).data('place') + ' .places-contents-widget__item_' + name);
+        widget_winguru.appendTo('#' + $(element).data('place') + ' .places-contents-widget__row_one');
 
         WgWidget(config[name], id);
 
@@ -241,9 +242,11 @@ function widgetRender(element)
             gmName = element.find('span').text()
 
         var widget_gismeteo = '<div id="' + gmId + '" class="gsInformer" style="width:275px;height:174px"><div class="gsIContent"><div id="cityLink"><a href="https://www.gismeteo.ru/' + gmUrl + '/" target="_blank">Погода в ' + gmName + '</a></div><div class="gsLinks"><table><tr><td><div class="leftCol"><a href="https://www.gismeteo.ru/" target="_blank"><img alt="Gismeteo" title="Gismeteo" src="https://nst1.gismeteo.ru/assets/flat-ui/img/logo-mini2.png" align="middle" border="0" /><span>Gismeteo</span></a></div><div class="rightCol"><a href="https://www.gismeteo.ru/' + gmUrl + '/2-weeks/" target="_blank">Прогноз на 2 недели</a></div></td></tr></table></div></div></div>';
+        widget_gismeteo = widgetWrap(widget_gismeteo, name);
+
         var widget_gismeteo_script = '<script async src="https://www.gismeteo.ru/api/informer/getinformer/?hash=' + gmHash + '" type="text/javascript"></script>';
 
-        $(widget_gismeteo + widget_gismeteo_script).appendTo('#' + $(element).data('place') + ' .places-contents-widget__item_' + name);
+        $(widget_gismeteo + widget_gismeteo_script).appendTo('#' + $(element).data('place') + ' .places-contents-widget__row_two');
 
         break;
     }
@@ -253,6 +256,11 @@ function widgetRender(element)
   config.rendered = true;
 
   element.data('widgets', config);
+
+  function widgetWrap(widget, mod)
+  {
+    return '<div class="places-contents-widget__item places-contents-widget__item_'+ mod +'">' + widget + '</div>';
+  }
 }
 
 if($('#fly-places'))
