@@ -208,6 +208,12 @@ function widgetRender(element)
         break;
 
       case 'winguru':
+        // if(!window.is_init_winguru)
+        // {
+        //   window.is_init_winguru = true;
+        //   $("body").append($('<script src="http://widget.windguru.cz/js/wg_widget.php" type="text/javascript"></script>'));
+        // }
+
         var id = $(element).data('place') + '-winguru';
         var widget_winguru = '<div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div>';
         widget_winguru = $(widgetWrap(widget_winguru, name));
@@ -215,7 +221,7 @@ function widgetRender(element)
         widget_winguru.appendTo('#' + $(element).data('place') + ' .places-contents-widget__row_one');
 
         WgWidget(config[name], id);
-
+        
         widget_winguru.minWidthShadow();
 
         var timer = setInterval(function() 
