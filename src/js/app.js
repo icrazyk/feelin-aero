@@ -158,7 +158,8 @@ $('.gallery').each(function(idx, gallery)
       {
         var $this = $(this),
             data = $this.data('shadow');
-            refresh($this);
+
+            $this.closest('.shdwtab__wrap').scrollLeft(1).scrollLeft(0);
       });
     }
   }
@@ -194,7 +195,18 @@ function widgetRender(element)
 {
   var config = element.data('widgets');
 
-  if(config && config.rendered) return;
+  if(config && config.rendered)
+  {
+    if(config.winguru)
+    {
+      setTimeout(function(){
+        $(config.target + ' .winguru').minWidthShadow('refresh');
+      },0)
+    }
+    return;
+  }
+
+  var target = '#' + $(element).data('place');
 
   for(name in config)
   {
@@ -203,35 +215,26 @@ function widgetRender(element)
       case 'meteo':
         var widget_meteo = '<a href=' + config[name].link + ' title="Подробный прогноз погоды" target="_blank"><img src=' + config[name].img + 'alt="" width="120" height="60" border="0" /></a>';
         widget_meteo = $(widgetWrap(widget_meteo, name));
-        widget_meteo.appendTo('#' + $(element).data('place') + ' .places-contents-widget__row_two');
+        widget_meteo.appendTo(target + ' .places-contents-widget__row_two');
 
         break;
 
       case 'winguru':
-        // if(!window.is_init_winguru)
-        // {
-        //   window.is_init_winguru = true;
-        //   $("body").append($('<script src="http://widget.windguru.cz/js/wg_widget.php" type="text/javascript"></script>'));
-        // }
-
         var id = $(element).data('place') + '-winguru';
         var widget_winguru = '<div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div>';
-        widget_winguru = $(widgetWrap(widget_winguru, name));
+        // widget_winguru = $(widgetWrap(widget_winguru, name));
+        widget_winguru = $(widget_winguru);
 
-        widget_winguru.appendTo('#' + $(element).data('place') + ' .places-contents-widget__row_one');
+        widget_winguru.appendTo(target + ' .places-contents-widget__row_one');
 
         WgWidget(config[name], id);
         
         widget_winguru.minWidthShadow();
 
-        var timer = setInterval(function() 
+        widget_winguru.bind('DOMNodeInserted', function()
         {
-          if($(widget_winguru).find('.wgfcst')) 
-          {
-            widget_winguru.minWidthShadow('refresh'); 
-            clearInterval(timer);
-          }
-        }, 100);
+          widget_winguru.minWidthShadow('refresh');
+        });
 
         break;
 
@@ -252,14 +255,14 @@ function widgetRender(element)
 
         var widget_gismeteo_script = '<script async src="https://www.gismeteo.ru/api/informer/getinformer/?hash=' + gmHash + '" type="text/javascript"></script>';
 
-        $(widget_gismeteo + widget_gismeteo_script).appendTo('#' + $(element).data('place') + ' .places-contents-widget__row_two');
+        $(widget_gismeteo + widget_gismeteo_script).appendTo(target + ' .places-contents-widget__row_two');
 
         break;
     }
   }
 
-  config = {};
   config.rendered = true;
+  config.target = target;
 
   element.data('widgets', config);
 
@@ -285,6 +288,11 @@ if($('#fly-places'))
   $('.places-tabs__item').on('click', function()
   {
     setPlace($(this));
+  });
+
+  $('.places-tabs__item:not(.places-tabs__item_active)').each(function()
+  {
+    widgetRender($(this));
   });
 }
 
