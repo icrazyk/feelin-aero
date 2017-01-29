@@ -213,13 +213,15 @@ function widgetRender(element)
     switch(name)
     {
       case 'meteo':
-        var widget_meteo = '<a href=' + config[name].link + ' title="Подробный прогноз погоды" target="_blank"><img src=' + config[name].img + 'alt="" width="120" height="60" border="0" /></a>';
+        var widget_meteo = '<a href="http://meteo.paraplan.net/forecast/summary.html?place=' + config[name].id + '" title="Подробный прогноз погоды" target="_blank"><img src="http://meteo.paraplan.net/informer/2-' + config[name].id + '.gif" alt="" width="120" height="60" border="0" /></a>';
         widget_meteo = $(widgetWrap(widget_meteo, name));
         widget_meteo.appendTo(target + ' .places-contents-widget__row_two');
 
         break;
 
       case 'winguru':
+        var winguruConfig = {"s":334217,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false};
+        $.extend(winguruConfig, config[name]);
         var id = $(element).data('place') + '-winguru';
         var widget_winguru = '<div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div>';
         // widget_winguru = $(widgetWrap(widget_winguru, name));
@@ -227,7 +229,7 @@ function widgetRender(element)
 
         widget_winguru.appendTo(target + ' .places-contents-widget__row_one');
 
-        WgWidget(config[name], id);
+        WgWidget(winguruConfig, id);
         
         widget_winguru.minWidthShadow();
 
@@ -272,7 +274,7 @@ function widgetRender(element)
   }
 }
 
-if($('#fly-places'))
+if($('#fly-places').length)
 {
   var hash = getHash();
 
