@@ -5,14 +5,15 @@
       position absolute
       top 0
       right 0
-    .menu-search &_open
-      left 0
-    .menu-search &_open label
-      width 100%
     .menu-search & label
       overflow hidden
       width 0
       float right
+      transition width 0.3s 
+    .menu-search &_open 
+      left 0  
+      label
+        width 100%
     label
       display block
   &-field
@@ -50,5 +51,7 @@
       background-color darken($menu-bg, 5%)
     .menu-search &
       border-radius 0
-      background-color transparent
+      width 45px
+      background-color darken($menu-bg, 5%)
+      border-left 1px solid darken($menu-bg, 8%)
       

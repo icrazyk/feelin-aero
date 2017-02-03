@@ -356,3 +356,29 @@ function getHash()
   return unSerialize;
 }
 
+/*
+* Mobile search form
+*/
+
+$('.menu-search .search-form').submit(function(e)
+{
+  if(!$(this).hasClass('search-form_open'))
+  {
+    e.preventDefault();
+
+    $(this)
+      .addClass('search-form_open')
+      .find('.search-field')
+      .focus();
+  }
+});
+
+$('.menu-search').click(function(e)
+{
+  e.stopPropagation();
+});
+
+$('body').on('click', function()
+{
+  $('.menu-search .search-form').removeClass('search-form_open');
+});
