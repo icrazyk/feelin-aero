@@ -1,57 +1,80 @@
-.search
-  &-form
-    position relative    
-    .menu-search &
-      position absolute
-      top 0
-      right 0
-    .menu-search & label
+.search-form
+  position relative
+  label
+    display block
+  .header__search &
+  .menu-search &
+    position absolute
+    top 0
+    right 0
+    label
       overflow hidden
       width 0
       float right
-      transition width 0.3s 
-    .menu-search &_open 
-      left 0  
-      label
-        width 100%
+      transition width 0.3s
+  .header__search &_open 
+  .menu-search &_open
+    left 0  
     label
+      width 100%
+  .header__search &
+    display none
+    @media (min-width: $md-devices-min)
       display block
-  &-field
-    width calc(100% - 35px)
-    height 35px
-    padding 5px 10px
-    border-radius 4px 0 0 4px
-    border 1px solid rgba($menu-bg, 0.7)
-    border-right 0px
-    outline none
-    &:hover
-    &:focus
-      border-color rgba($menu-bg, 1)
-    .menu-search &
-      border-radius 0
-      border-width 0
-  &-submit
-    @extend .btn
-    width 35px
-    height 35px
-    position absolute
-    right 0
-    top 0
-    border none
-    background-image url(./img/magnifying-glass.svg)
-    background-repeat no-repeat
-    background-position center center
-    background-size 15px auto
-    background-color rgba($menu-bg, 0.7)
-    border-radius 0 4px 4px 0
-    &:hover
-    &:focus
-      background-color rgba($menu-bg, 1)
-    &:active
-      background-color darken($menu-bg, 5%)
-    .menu-search &
-      border-radius 0
-      width 45px
-      background-color darken($menu-bg, 5%)
-      border-left 1px solid darken($menu-bg, 8%)
-      
+    label
+      margin-top: 5px;
+      margin-right: 16px;
+
+.search-field
+  width calc(100% - 35px)
+  height 35px
+  padding 5px 10px
+  border-radius 4px 0 0 4px
+  border 1px solid rgba($menu-bg, 0.7)
+  border-right 0px
+  outline none
+  &:hover
+  &:focus
+    border-color rgba($menu-bg, 1)
+  .menu-search &
+    border-radius 0
+    border-width 0
+    width calc(100% - 45px)
+  .header__search &
+    width calc(100% - 15px)
+    padding-right 20px
+
+.search-submit
+  @extend .btn
+  width 35px
+  height 35px
+  position absolute
+  right 0
+  top 0
+  border none
+  background-image url(./img/magnifying-glass.svg)
+  background-repeat no-repeat
+  background-position center center
+  background-size 15px auto
+  background-color rgba($menu-bg, 0.7)
+  border-radius 0 4px 4px 0
+  &:hover
+  &:focus
+    background-color rgba($menu-bg, 1)
+  &:active
+    background-color darken($menu-bg, 5%)
+  .menu-search &
+    border-radius 0
+    width 45px
+    background-color darken($menu-bg, 5%)
+    border-left 1px solid darken($menu-bg, 8%)
+  .header__search &
+    width 45px
+    height 45px
+    border-radius 50%
+  .header__search .search-form_open &
+    background-color $menu-bg
+  .header__search .in &
+    transition 0s background-color
+  .header__search .out &
+    transition .2s background-color .3s
