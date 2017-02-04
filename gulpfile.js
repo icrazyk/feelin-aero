@@ -83,7 +83,7 @@ function imagesWatch()
 function startBasisjsToolsBuild()
 {
   return gulp.src(options.dev + 'index.html')
-    .pipe(exec('node ./node_modules/basisjs-tools-build/bin/build build -b . -f <%= file.path %> -o <%= options.build %>', options))
+    .pipe(exec('node ./node_modules/basisjs-tools-build/bin/build build -p -b . -f <%= file.path %> -o <%= options.build %>', options))
     .pipe(exec.reporter());
 }
 
