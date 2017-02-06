@@ -387,12 +387,12 @@ function toggleSearch(form, formWrap)
     }
   });
 
-  $(formWrap).click(function(e)
+  $(formWrap).on('click touchstart', function(e)
   {
     e.stopPropagation();
   });
 
-  $('body').on('click', function()
+  $('body').on('click touchstart', function()
   {
     $(form).addClass('out').removeClass('search-form_open in');
   });
