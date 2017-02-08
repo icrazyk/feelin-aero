@@ -2,13 +2,25 @@
   margin 0
   padding 0
   list-style-type none
+  @media (min-width: $sm-devices-min)
+    margin 0 -5px
   &__item
     margin-bottom 15px
+    @media (min-width: $sm-devices-min)
+      float left
+      width 20%
+      padding 0 5px
     div
       margin-left 10px
       display inline-block
       vertical-align middle
       width calc(100% - 75px)
+      @media (min-width: $sm-devices-min)
+        display block
+        margin-left 0
+        margin-top 10px
+        text-align center
+        width auto
     &:before
       content ""
       display inline-block
@@ -18,6 +30,9 @@
       background-repeat no-repeat
       background-position center center
       background-size contain
+      @media (min-width: $sm-devices-min)
+        display block
+        margin auto
     ^[1]
       &_expanding:before
         background-image url(./img/ico-expanding.png)
@@ -28,5 +43,5 @@
       &_freeman:before
         background-image url(./img/ico-freeman.png)
       &_brain:before
-        background-image url(./img/ico-brain.png)
-      
+        background-image url(./img/ico-brain.png)       
+    
