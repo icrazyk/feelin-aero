@@ -92,21 +92,27 @@ $('.gallery').each(function(idx, gallery)
         visibleClass = 'shdwtab__shad_visible';
 
     // Left shadow
-    if(scrollLeft > 5){
-      leftShadow.addClass(visibleClass)
-      leftShadow.css({'opacity' : scrollLeft / 100})
-    }else{
-      leftShadow.removeClass(visibleClass)
-      leftShadow.css({'opacity' : ''})
+    if(scrollLeft > 5)
+    {
+      leftShadow.addClass(visibleClass);
+      leftShadow.css({'opacity' : scrollLeft / 100});
+    }
+    else
+    {
+      leftShadow.removeClass(visibleClass);
+      leftShadow.css({'opacity' : ''});
     }
 
     // Right shadow
-    if(scrollRight > 5){
-      rightShadow.addClass(visibleClass)
-      rightShadow.css({'opacity' : scrollRight / 100})
-    }else{
-      rightShadow.removeClass(visibleClass)
-      rightShadow.css({'opacity' : ''})
+    if(scrollRight > 5)
+    {
+      rightShadow.addClass(visibleClass);
+      rightShadow.css({'opacity' : scrollRight / 100});
+    }
+    else
+    {
+      rightShadow.removeClass(visibleClass);
+      rightShadow.css({'opacity' : ''});
     }
   }
 
@@ -224,12 +230,11 @@ function widgetRender(element)
         $.extend(winguruConfig, config[name]);
         var id = $(element).data('place') + '-winguru';
         var widget_winguru = '<div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div>';
-        // widget_winguru = $(widgetWrap(widget_winguru, name));
         widget_winguru = $(widget_winguru);
-
         widget_winguru.appendTo(target + ' .places-contents-widget__row_one');
 
-        WgWidget(winguruConfig, id);
+        if(typeof WgWidget == 'function')
+          WgWidget(winguruConfig, id);
         
         widget_winguru.minWidthShadow();
 
