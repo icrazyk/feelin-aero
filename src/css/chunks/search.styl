@@ -45,6 +45,10 @@
   .header__search &
     width calc(100% - 15px)
     padding-right 20px
+    opacity 0
+    transition opacity .3s
+  .header__search .search-form_open &
+    opacity 1
 
 .search-submit
   @extend .btn
