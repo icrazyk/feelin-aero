@@ -25,6 +25,7 @@
   "devDependencies": {
     "basisjs-tools-build": "^1.8.3",
     "browser-sync": "^2.18.2",
+    "bxslider": "^4.2.6",
     "del": "^2.2.2",
     "fancybox": "^3.0.0",
     "gulp": "^3.9.1",

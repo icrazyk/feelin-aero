@@ -408,3 +408,11 @@ toggleSearch('.menu-search .search-form', '.menu-search');
 
 // for desktop
 toggleSearch('.header__search .search-form', '.header__search');
+
+/*
+* BxSlider
+*/
+
+$(document).ready(function(){
+  $('.bxslider').bxSlider();
+});
