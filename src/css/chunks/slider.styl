@@ -45,6 +45,13 @@
 .slider
   &_main-page
     margin-top 25px
+    ^[0]__this
+        overflow hidden
+        height 250px
+        @media (min-width: $xsl-devices-min)
+          height 320px
+        @media (min-width: $sm-devices-min)
+          height 350px
   .bx-wrapper
     box-shadow none
     border none
