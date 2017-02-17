@@ -413,6 +413,10 @@ toggleSearch('.header__search .search-form', '.header__search');
 * BxSlider
 */
 
-$(document).ready(function(){
-  $('.bxslider').bxSlider();
+$('.bxslider').bxSlider({
+  swipeThreshold: 100,
+  auto: true,
+  speed: 700,
+  autoHover: true
 });
+
