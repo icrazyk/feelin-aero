@@ -417,6 +417,13 @@ $('.bxslider').bxSlider({
   swipeThreshold: 100,
   auto: true,
   speed: 700,
-  autoHover: true
+  autoHover: true,
+  pause: 5000,
+  onSliderLoad: function()
+  {
+    $wrap = $(this).closest('.bx-wrapper');
+    $wrap.find('.bx-prev, .bx-next').on('mouseover', this.stopAuto);
+    $wrap.find('.bx-prev, .bx-next').on('mouseout', this.startAuto);
+  }
 });
 
