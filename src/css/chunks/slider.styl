@@ -18,30 +18,34 @@
       max-width 550px
       
 .slide-content
-  font-size 24px
-  @media (min-width: $sm-devices-min)
-    font-size 30px
   &__title span
     display inline
     font-weight bold
     color #fff
     background-color rgba($menu-bg, 0.9)
     box-shadow -10px 0 0 0 rgba($menu-bg, 0.9), 10px 0 0 0 rgba($menu-bg, 0.9)
-    padding 2px 0      
+    padding 2px 0
+    font-size 24px
+    @media (min-width: $sm-devices-min)
+      font-size 30px    
   &__link
     margin 20px 0 0 -10px
     a
       @extend .btn
       padding 5px 10px
-      background-color rgba(#ec0000, 0.8)
+      background-color rgba(#ec0000, 0.9)
       color #fff
-      font-weight 300
       transition box-shadow 0.2s
-      border-radius 7px
+      border-radius 4px
+      text-transform uppercase
+      font-size 22px
+      @media (min-width: $sm-devices-min)
+        padding 10px 20px
+        font-size 24px
       &:hover
         background-color #ec0000
         box-shadow 0 0 10px #ec0000
-    
+        
 .slider
   &_main-page
     margin-top 25px

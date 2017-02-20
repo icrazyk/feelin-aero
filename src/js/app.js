@@ -426,4 +426,3 @@ $('.bxslider').bxSlider({
     $wrap.find('.bx-prev, .bx-next').on('mouseout', this.startAuto);
   }
 });
-
