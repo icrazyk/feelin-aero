@@ -399,7 +399,8 @@ function toggleSearch(form, formWrap)
 
   $('body').on('click touchstart', function()
   {
-    $(form).addClass('out').removeClass('search-form_open in');
+    if($(form).hasClass('search-form_open'))
+      $(form).addClass('out').removeClass('search-form_open in');
   });
 }
 
