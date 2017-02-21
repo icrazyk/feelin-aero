@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic" rel="stylesheet">
+  <title>Document</title>
+  <style>
+    body
+    {
+      padding: 100px;
+    }
+
+    @keyframes slowjiggle
+    {
+      0% 
+      { 
+        transform: perspective(100px) rotateY(-15deg);
+      }
+
+      50% 
+      {
+        transform: perspective(100px) rotateY(15deg);
+      }
+
+      100% 
+      { 
+        transform: perspective(100px) rotateY(-15deg);
+      }
+    }
+
+    @keyframes pausejiggle
+    {
+      to
+      { 
+        transform: perspective(100px) rotateY(0deg);
+      }
+    }
+
+    .flybtn__content
+    {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      background-color: #faeb00;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+      text-transform: uppercase;
+      font-size: 12px;
+      text-shadow: 0 0 3px rgba(0,0,0,0.3);
+      box-shadow: 0 0 25px -5px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s;
+      animation: slowjiggle 6s ease-in-out infinite;
+    }
+
+    .flybtn__content:hover
+    {
+      background-color: #ffdb5f;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="flybtn">
+    <div class="flybtn__content">Полетать</div>
+  </div>
+</body>
+</html>
