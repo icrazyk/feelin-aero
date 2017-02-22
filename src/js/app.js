@@ -427,3 +427,12 @@ $('.bxslider').bxSlider({
     $wrap.find('.bx-prev, .bx-next').on('mouseout', this.startAuto);
   }
 });
+
+/*
+* Modal fly
+*/
+
+$('#modal-fly-open').click(function()
+{
+  $('#modal-fly').modal('show');
+});
