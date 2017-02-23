@@ -79,8 +79,6 @@ button
     .modal-dialog
       transform translate(0, -25%)
       transform translate(0, -25%)
-      transition -webkit-transform 0.3s ease-out
-      transition -o-transform 0.3s ease-out
       transition transform 0.3s ease-out
   &.in
     .modal-dialog
@@ -103,6 +101,14 @@ button
   background-clip padding-box
   background-clip padding-box
   outline 0
+  color #fff;
+  input[type="submit"]
+    background-color #66c227
+    &:hover
+    &:focus
+      background-color darken(#66c227, 5%)
+    &:active
+      background-color darken(#66c227, 10%)
 
 .modal-backdrop
   position fixed
@@ -111,11 +117,11 @@ button
   bottom 0
   left 0
   z-index 1040
-  background-color #000000
+  background-color rgb(32, 32, 60)
   &.fade
     opacity 0
   &.in
-    opacity 0.5
+    opacity 0.85
 
 .modal-header
   padding 15px
@@ -126,6 +132,7 @@ button
 .modal-title
   margin 0
   line-height 1.42857143
+  font-size 24px
 
 .modal-body
   position relative
@@ -201,3 +208,16 @@ button
 
 .affix
   position fixed
+  
+.wpcf7-not-valid-tip
+  color #ec0000
+  
+.wpcf7-response-output
+  padding 10px
+  border-radius 4px
+  
+.wpcf7-validation-errors
+  background-color #ec0000
+  
+.wpcf7-mail-sent-ok
+  background-color #66c227
