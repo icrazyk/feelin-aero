@@ -209,12 +209,23 @@ button
 .affix
   position fixed
   
+.screen-reader-response
+  display none
+  
 .wpcf7-not-valid-tip
-  color #ec0000
+  background #ec0000
+  display inline-block
+  padding 3px 10px
+  border-radius 4px
+  font-size 13px
+  margin-top 3px
   
 .wpcf7-response-output
+  margin-top 15px
   padding 10px
   border-radius 4px
+  &:empty
+    display none
   
 .wpcf7-validation-errors
   background-color #ec0000
