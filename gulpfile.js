@@ -10,6 +10,7 @@ const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const stylus = require('gulp-stylus');
 const plumber = require('gulp-plumber');
+const imagemin = require('gulp-imagemin');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
 const rev = require('gulp-rev');
@@ -143,7 +144,23 @@ gulp.task('rev', ['init', 'basisjs-tools-build', 'clean:html'], function()
     .pipe(gulp.dest(options.build))
 });
 
+gulp.task('imagemin', ['init', 'basisjs-tools-build'], function()
+{
+  gulp.src(options.build + "res/*")
+    .pipe(imagemin([
+      imagemin.gifsicle(), 
+      imagemin.jpegtran({
+        progressive: true
+      }), 
+      imagemin.optipng({
+        optimizationLevel: 7
+      }), 
+      imagemin.svgo()
+    ]))
+    .pipe(gulp.dest(options.build + "res"))
+});
+
 gulp.task('init', ['clean', 'styles:build', 'js:build', 'ect:build', 'images:build']);
 
-gulp.task('build', ['init', 'basisjs-tools-build', 'clean:html', 'rev']);
+gulp.task('build', ['init', 'basisjs-tools-build', 'imagemin', 'clean:html', 'rev']);
 gulp.task('dev', ['init', 'images:dev', 'ect:dev', 'styles:dev', 'watch', 'browser-sync']);
