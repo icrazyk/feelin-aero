@@ -59,7 +59,7 @@ if (!WgWidget) var WgWidget = (function() {
         c.hasClass("cleanslate") || c.addClass("cleanslate");
         c.hasClass("wgfcst") || c.addClass("wgfcst");
         "undefined" === typeof WgJsonCache && (WgJsonCache = {});
-        WgJsonCache[l] ? (d.lang = WgJsonCache[l].lang, WgFcst.showForecast(WgJsonCache[l].fcst, d, g)) : e.getJSON("/wp-content/themes/feelinaero/windguru.php?callback=?", b, function(b) {
+        WgJsonCache[l] ? (d.lang = WgJsonCache[l].lang, WgFcst.showForecast(WgJsonCache[l].fcst, d, g)) : e.getJSON("/wp-content/themes/feelinaero/windguru/windguru.php?callback=?", b, function(b) {
           b.error ? b.fcst = b : (d.lang = b.lang, WgJsonCache[l] = b);
           WgFcst.showForecast(b.fcst, d, g)
         })
