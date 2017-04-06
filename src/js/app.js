@@ -204,11 +204,7 @@ function widgetRender(element)
   if(config && config.rendered)
   {
     if(config.winguru)
-    {
-      setTimeout(function(){
-        $(config.target + ' .winguru').minWidthShadow('refresh');
-      }, 0);
-    }
+      setTimeout(function(){ $(config.target + ' .winguru').minWidthShadow('refresh'); }, 0);
 
     return;
   }
@@ -230,25 +226,19 @@ function widgetRender(element)
         var winguruConfig = {"s":334217,"odh":0,"doh":24,"wj":"msd","tj":"c","waj":"m","fhours":72,"lng":"ru","params":["WINDSPD","GUST","SMER","TMPE","CDC","APCPs"],"first_row":true,"spotname":true,"first_row_minfo":true,"last_row":true,"lat_lon":true,"tz":true,"sun":true,"link_archive":false,"link_new_window":false};
         $.extend(winguruConfig, config[name]);
 
-        // var windGuruloader =  '<div class="places-widget-loaded">'
-        //                         + '<div class="places-widget-loaded__loader"><span class="ajax-loader is-active"></span></div>'
-        //                         + '<div class="places-widget-loaded__title">WindGuru</div>'
-        //                       '</div>';
+        var windGuruloader =  '<div class="places-widget-loaded">'
+                                 + '<div class="places-widget-loaded__loader"><span class="ajax-loader is-active"></span></div>'
+                                 + '<div class="places-widget-loaded__title">WindGuru</div>'
+                               '</div>';
 
         var id = $(element).data('place') + '-winguru';
         var widget_winguru = '<div style="min-width:724px" class="winguru"><div id="' + id + '"></div></div>';
         widget_winguru = $(widget_winguru);
+        $(windGuruloader).appendTo(target + ' .places-contents-widget__row_one');
         widget_winguru.appendTo(target + ' .places-contents-widget__row_one');
 
         if(typeof WgWidget == 'function')
           WgWidget(winguruConfig, id);
-        
-        widget_winguru.minWidthShadow();
-
-        widget_winguru.bind('DOMNodeInserted', function()
-        {
-          widget_winguru.minWidthShadow('refresh');
-        });
 
         break;
 
@@ -288,6 +278,38 @@ function widgetRender(element)
 
 if($('#fly-places').length)
 {
+  var tabsTree = document.querySelectorAll('.places-contents-widget__row_one');
+  
+  var mutationCb = function(mutation)
+  {
+    mutation.forEach(function(current)
+    {
+      var $current = $(current.target);
+
+      if($current.hasClass('wgfcst') && !$current.hasClass('wgfcst_loaded'))
+      {
+        $current.addClass('wgfcst_loaded');
+        var $widgetContainer = $current.closest('.places-contents-widget__row_one');
+
+        $widgetContainer.find('.places-widget-loaded').remove();
+        $widgetContainer.find('.winguru').minWidthShadow();
+      }
+    });
+  };
+
+  var mo = new MutationObserver(mutationCb);
+
+  var mutationConf = {
+    'attributes': true,
+    'attributeFilter': ['class'],
+    'subtree': true
+  };
+
+  tabsTree.forEach(function(current)
+  {
+    mo.observe(current, mutationConf);
+  });
+
   var hash = getHash();
 
   if(hash['place'])
