@@ -13,6 +13,7 @@ const plumber = require('gulp-plumber');
 const imagemin = require('gulp-imagemin');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
+const proxy = require('http-proxy-middleware');
 const rev = require('gulp-rev');
 
 const options  = {
@@ -118,14 +119,23 @@ gulp.task('basisjs-tools-build', ['init'], startBasisjsToolsBuild);
 
 gulp.task('browser-sync', ['init'], function() 
 {
+  var windGuruProxy = proxy('/wp-content/themes/feelinaero/windguru',
+  {
+    target: 'http://feelin-aero.com',
+    changeOrigin: true,
+    logLevel: 'debug'
+  });
+  
   browserSync.init({
     server: {
       baseDir: './dev/',
       routes: {
         '/node_modules':'node_modules'
-      }
+      },
+      middleware: [windGuruProxy]
     }
   });
+
   gulp.watch(options.dev + '**/*.*').on('change', browserSync.reload);
 });
 
