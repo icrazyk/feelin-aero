@@ -4,7 +4,7 @@
   "description": "html site template",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx gulp dev"
   },
   "repository": {
     "type": "git",
