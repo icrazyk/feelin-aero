@@ -4,6 +4,8 @@ var WGLIBS = {
   css: '/css/min/wgstyle-widget.min.css?v=20140407-093613'
 };
 
+var current_spot;
+
 if (!WgWidget) var WgWidget = (function() {
 
   var WgWidget;
@@ -68,16 +70,16 @@ if (!WgWidget) var WgWidget = (function() {
         "undefined" === typeof WgJsonCache && (WgJsonCache = {});
         
         // hack start
-        var current_spot = windguruData.find(i => i.fcst.id_spot = l);
-        d.lang = current_spot.lang;
-        WgFcst.showForecast(current_spot.fcst, d, g);
+        current_spot = windguruData.find(i => i.fcst.id_spot = l);
+        // d.lang = current_spot.lang;
+        // WgFcst.showForecast(current_spot.fcst, d, g);
         // hack end
 
-        // WgJsonCache[l] ? (d.lang = WgJsonCache[l].lang, WgFcst.showForecast(WgJsonCache[l].fcst, d, g)) : e.getJSON("/wp-content/themes/feelinaero/windguru/windguru.php?callback=?", b, function(b) {
-        //   debugger;
-        //   b.error ? b.fcst = b : (d.lang = b.lang, WgJsonCache[l] = b);
-        //   WgFcst.showForecast(b.fcst, d, g)
-        // })
+        WgJsonCache[l] ? (d.lang = WgJsonCache[l].lang, WgFcst.showForecast(WgJsonCache[l].fcst, d, g)) : (function(b) {
+          // debugger;
+          b.error ? b.fcst = b : (d.lang = b.lang, WgJsonCache[l] = b);
+          WgFcst.showForecast(b.fcst, d, g)
+        })(current_spot);
       }
     }
 

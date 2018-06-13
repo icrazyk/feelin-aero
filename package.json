@@ -4,7 +4,8 @@
   "description": "html site template",
   "main": "index.js",
   "scripts": {
-    "start": "npx gulp dev"
+    "start": "npx gulp dev",
+    "build": "npx gulp build"
   },
   "repository": {
     "type": "git",
