@@ -5,8 +5,6 @@ Version: 0.1.0
 */
 
 // error_reporting(E_ALL);
-// echo $_SERVER['HOME'] . '/feelin-aero.com/public_html/';
-// print_r($_SERVER);
 
 $config = [
   // Страницы родительские для страниц c windguru id`s
@@ -23,7 +21,7 @@ $config = [
 
   'wp_core_path' => $_SERVER['HOME'] . '/feelin-aero.com/public_html/wp-load.php',
 
-  'cache_path' => $_SERVER['HOME'] . '/feelin-aero.com/public_html/wp-content/plugins/windguru_cache/cache',
+  'cache_path' => $_SERVER['HOME'] . '/feelin-aero.com/public_html/wp-content/themes/feelinaero/windguru/cache',
 ];
 
 set_time_limit($config['time_limit']);

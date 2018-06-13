@@ -2,6 +2,22 @@
 /*
 * Fly places block
 */
+
+function get_place($id) {
+  $filename = join(DIRECTORY_SEPARATOR, [TEMPLATEPATH, 'windguru/cache', $id . '.txt']);
+
+  $contents = '';
+
+  if(file_exists($filename))
+  {
+    $handle = fopen($filename, 'r');
+    $contents = fread($handle, filesize($filename));
+    fclose($handle);
+  }
+
+  return $contents;
+}
+
 function fly_places($atts)
 {
   global $post;
@@ -9,7 +25,6 @@ function fly_places($atts)
   $config = array
   (
     'id' => $post->ID,
-    'activeId' => '730',
     'activeTabClass' => 'places-tabs__item_active',
     'activeContentClass' => 'places-contents__item_active',
     'tplWrap' =>  '<div class="places" id="fly-places">'
@@ -31,7 +46,7 @@ function fly_places($atts)
       'meteo' => 'place__widget_meteo-paraplan'
       ),
     // 'scripts' => '<script src="https://widget.windguru.cz/js/wg_widget.php" type="text/javascript"></script>' 
-    'scripts' => ''
+    'tplScriptWindguruData' => '<script>var windguruData = [%1$s];</script>'
   );
 
   $config = shortcode_atts($config, $atts, 'fly-places');
@@ -46,6 +61,8 @@ function fly_places($atts)
   $chunkItemTabs = '';
   $chunkItemContents = '';
   $firstPlace = true;
+
+  $windguruPlaces = [];
   
   foreach ($pages as $key => $post) 
   {
@@ -76,16 +93,23 @@ function fly_places($atts)
         }
         $widgets .= '"' . $name . '":' . get_field($widget);
       }
+
+      if ($name == 'winguru') {
+        $windguruPlaceId = json_decode(get_field($widget))->s;
+        $windguruPlaces[] = get_place($windguruPlaceId);
+      }
     }
     $widgets .= '}';
-
 
     $chunkItemTabs .= sprintf($config['tplItemTab'], $activeTabClass, $post->post_name, $widgets, get_the_title());
     $chunkItemContents .= sprintf($config['tplItemContent'], $post->post_name, $activeContentClass, get_the_title(), get_the_content());
   }
   wp_reset_postdata();
 
-  $flyPlaces = sprintf($config['tplWrap'], $chunkItemTabs, $chunkItemContents, $config['scripts']);
+  $windguruPlaces = join(',', $windguruPlaces);
+  $windguruData = sprintf($config['tplScriptWindguruData'], $windguruPlaces);
+  
+  $flyPlaces = sprintf($config['tplWrap'], $chunkItemTabs, $chunkItemContents, $windguruData);
 
   return $flyPlaces;
 }
