@@ -69,17 +69,9 @@ if (!WgWidget) var WgWidget = (function() {
         c.hasClass("wgfcst") || c.addClass("wgfcst");
         "undefined" === typeof WgJsonCache && (WgJsonCache = {});
         
-        // hack start
-        current_spot = windguruData.find(i => i.fcst.id_spot = l);
-        // d.lang = current_spot.lang;
-        // WgFcst.showForecast(current_spot.fcst, d, g);
-        // hack end
-
-        WgJsonCache[l] ? (d.lang = WgJsonCache[l].lang, WgFcst.showForecast(WgJsonCache[l].fcst, d, g)) : (function(b) {
-          // debugger;
-          b.error ? b.fcst = b : (d.lang = b.lang, WgJsonCache[l] = b);
-          WgFcst.showForecast(b.fcst, d, g)
-        })(current_spot);
+        current_spot = windguruData.find(i => i.fcst.id_spot === b.s);
+        d.lang = current_spot.lang;
+        WgFcst.showForecast(current_spot.fcst, d, g);
       }
     }
 
