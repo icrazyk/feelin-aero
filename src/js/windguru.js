@@ -4,6 +4,8 @@ var WGLIBS = {
   css: '/css/min/wgstyle-widget.min.css?v=20140407-093613'
 };
 
+var current_spot;
+
 if (!WgWidget) var WgWidget = (function() {
 
   var WgWidget;
@@ -15,7 +17,9 @@ if (!WgWidget) var WgWidget = (function() {
 
     function q(h) {
       if (!r) {
+
         r = !0;
+
         var b = {},
           d = {
             m: 3,
@@ -40,29 +44,34 @@ if (!WgWidget) var WgWidget = (function() {
             fcst_maps: !1
           },
           c;
+        
         for (c in h) d[c] = h[c];
         h = [];
+
         for (c = 0; c < d.params.length; c++) {
           var a = d.params[c];
           "WAVESMER" == a && (a =
             "DIRPW");
           h[c] = a
         }
+
         d.params = h;
         b.url = window.location.href;
         b.hostname = window.location.hostname;
         b.s = d.s;
         b.m = d.m;
         b.lng = d.lng;
+
         var l = b.s + "_" + b.m + "_" + b.lng;
+
         c = e("#" + g);
         c.hasClass("cleanslate") || c.addClass("cleanslate");
         c.hasClass("wgfcst") || c.addClass("wgfcst");
         "undefined" === typeof WgJsonCache && (WgJsonCache = {});
-        WgJsonCache[l] ? (d.lang = WgJsonCache[l].lang, WgFcst.showForecast(WgJsonCache[l].fcst, d, g)) : e.getJSON("/wp-content/themes/feelinaero/windguru/windguru.php?callback=?", b, function(b) {
-          b.error ? b.fcst = b : (d.lang = b.lang, WgJsonCache[l] = b);
-          WgFcst.showForecast(b.fcst, d, g)
-        })
+        
+        current_spot = windguruData.find(i => i.fcst.id_spot === b.s);
+        d.lang = current_spot.lang;
+        WgFcst.showForecast(current_spot.fcst, d, g);
       }
     }
 
