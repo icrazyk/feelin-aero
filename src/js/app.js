@@ -465,3 +465,11 @@ $('#modal-fly-open').click(function()
 {
   $('#modal-fly').modal('show');
 });
+
+document.addEventListener('wpcf7mailsent', function(event) {
+  if ( '979' == event.detail.contactFormId ) {
+    setTimeout(function() {
+      $('#modal-fly').modal('hide'); 
+    }, 5000); 
+  }
+}, false);
