@@ -264,7 +264,7 @@ function sendOrderToVk ($cf7)
   $date = new DateTime('now');
   $date->add(new DateInterval('PT5H'));
   $date = $date->format('Y-m-d H:i');
-  $message = "ЗАЯВКА \"ПОЛЕТАТЬ\" \n Услуга: {$_POST['service']} \n От: {$_POST['your-name']} \n Телефон: {$_POST['your-tel']} \n Сообщение: {$_POST['your-message']} \n Дата: $date";
+  $message = "ЗАЯВКА \"ПОЛЕТАТЬ\" \n От: {$_POST['your-name']} \n Телефон: {$_POST['your-tel']} \n Дата: $date";
  
   foreach($user_ids as $id)
   {	  
