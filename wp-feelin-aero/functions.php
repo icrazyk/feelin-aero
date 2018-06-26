@@ -276,8 +276,39 @@ function sendOrderToVk ($cf7)
     );
 
     $get_params = http_build_query($request_params);
-    file_get_contents('https://api.vk.com/method/messages.send?'. $get_params);
+    error_log(file_get_contents('https://api.vk.com/method/messages.send?'. $get_params));
   }
 }
 
-add_action("wpcf7_before_send_mail", "sendOrderToVk", 10, 1);
+// add_action("wpcf7_before_send_mail", "sendOrderToVk", 10, 1); // look vk.php
+
+function sendSMS ($sf7) {
+  $login = 'skycrazyk@gmail.com';
+  $password = 'Z7YK697vGMbCU5aRL79PmJhH8zoB';
+
+  $params = [
+    'numbers' => [
+      1 => 79225318232,
+      2 => 79228259800,
+    ],
+    'sign' => 'Feelin Aero',
+    'text' => "Name: {$_POST['your-name']}\nTel: {$_POST['your-tel']}",
+    'channel' => 'DIRECT',
+  ];
+
+  $get_params = http_build_query($params);
+
+  $url = 'https://email:api_key@gate.smsaero.ru/v2/sms/send?' . $get_params;
+
+  $ch = curl_init();
+
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+  curl_setopt($ch, CURLOPT_USERPWD, "$login:$password");
+
+  $result = curl_exec($ch);
+  curl_close($ch);  
+}
+
+add_action("wpcf7_before_send_mail", "sendSMS", 10, 1);

@@ -9,6 +9,7 @@ $callback = $_GET['callback'];
 $filename = join(DIRECTORY_SEPARATOR, array(getcwd(), "cache", $spot . ".txt"));
 $contents = '';
 
+// Если файл существует и он достаточно свеж - читаем
 if(file_exists($filename))
 {
   $handle = fopen($filename, 'r');

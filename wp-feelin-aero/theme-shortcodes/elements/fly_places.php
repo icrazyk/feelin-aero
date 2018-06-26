@@ -15,6 +15,8 @@ function get_place($id) {
     fclose($handle);
   }
 
+  // echo $contents . ' ';
+
   return $contents;
 }
 
