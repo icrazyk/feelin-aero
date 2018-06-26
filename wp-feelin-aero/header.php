@@ -39,9 +39,12 @@
                 </div>
                 <div class="menu-toggle__title">Меню</div>
               </div>
-              <div class="menu-search">
-                <?php get_search_form(); ?>
-              </div>
+              <button 
+                class="menu-fly"
+                data-event="modal-fly-open"
+              >
+                Полетать!
+              </button>
             </div>
             <div class="header-menu__menu">
               <?php if ( has_nav_menu( 'primary' ) ) : ?>
@@ -54,11 +57,14 @@
             </div>
           </div>
         </div>
-        <div class="header__search">
+        <!-- <div class="header__search">
           <?php get_search_form(); ?>
-        </div>
+        </div> -->
         <div class="header__flybtn">
-          <button class="flybtn" id="modal-fly-open"><span>Полетать</span></button>
+          <button 
+            class="flybtn" 
+            data-event="modal-fly-open"
+          ><span>Полетать</span></button>
         </div>
       </div>
     </header>

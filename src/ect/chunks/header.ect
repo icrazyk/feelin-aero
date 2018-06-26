@@ -14,21 +14,27 @@
             </div>
             <div class="menu-toggle__title">Меню</div>
           </div>
-          <div class="menu-search">
-            <% include './ect/chunks/search' %>
-          </div>
+          <button 
+            class="menu-fly"
+            data-event="modal-fly-open"
+          >
+            Полетать!
+          </button>
         </div>
         <div class="header-menu__menu">
           <% include './ect/chunks/menu' %>
         </div>
       </div>
     </div>
-    <div class="header__search">
+    <!-- <div class="header__search">
       <% include './ect/chunks/search' %>
-    </div>
+    </div> -->
     <div class="header__flybtn">
-      <button class="flybtn" id="modal-fly-open">
-        <span>Обратный звонок</span>
+      <button
+        class="flybtn" 
+        data-event="modal-fly-open"
+      >
+        <span>Полетать!</span>
       </button>
     </div>
   </div>
