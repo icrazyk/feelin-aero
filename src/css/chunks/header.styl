@@ -1,41 +1,53 @@
 .header
   @extend .section
-  padding-top 30px
   position relative
   height 115px
+  padding-top 15px
   @media (min-width: $xsl-devices-min)
     height 150px
+
   @media (min-width: $sm-devices-min)
     padding-top 50px
     height 260px
+
   @media (min-width: $md-devices-min)
     background none
     padding-top 25px
     height 340px
+
   &__menu
     margin 0 -20px
+
     @media (min-width: $sm-devices-min)
       margin-top 80px
+
     @media (min-width: $md-devices-min)
       margin 30px 0 0
+
   &__search
     position absolute
-    top 0px
+    top -10px
     right 20px
     width 290px
+
   &-logo
     display block
     width 250px
-    height 169px
-    background url(img/header-logo-noise.png) no-repeat center center / 250px
+    height 120px
+    background url(img/header-logo-noise.png) no-repeat center center / contain
     margin 0 auto
+
+    @media (min-width: $sm-devices-min)
+      height 169px
 
   &-menu
     &__menu
       clearfix()
       display none
+
       @media (min-width: $md-devices-min)
         display block
+
     &__toggle
       position fixed
       left 0
@@ -47,12 +59,18 @@
       clearfix()
       @media (min-width: $md-devices-min)
         display none
+
   .container
     position relative
+
   &__flybtn
-    position absolute
-    right: 45px;
-    top: 10px;
-    @media (min-width: $md-devices-min)
+    display none
+    
+    @media (min-width: $sm-devices-min)
+      display block
+      position absolute
       right 20px
-      top 85px
+      top 0px
+
+    @media (min-width: $md-devices-min)
+      top 10px

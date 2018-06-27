@@ -2,6 +2,7 @@
   margin 0
   padding 0
   list-style-type none
+
   &-toggle
     height 36px
     padding 7px 20px
@@ -9,58 +10,75 @@
     color $menu-color
     background darken($menu-bg, 5%)
     border-right 1px solid darken($menu-bg, 8%)
+
     &__icon
       float left
       width 25px
       padding-top 1px
+
       span
         display block
         margin 3px 0
         background $menu-color
         height 2px
         position relative
+
         .mm-opening &
           &:nth-child(2)
             opacity 0
+
           &:nth-child(1)
             transform rotate(35deg)
             top 5px
+
           &:nth-child(3)
             transform rotate(-35deg)
-            top -5px     
+            top -5px  
+
     &__title
       margin-left 10px
       float left
+
   &-mobile
     display none
+
   .header &
     clearfix()
     background rgba($menu-bg, 0.9)
     border-radius 8px
     box-shadow 0 0 20px rgba($menu-bg, 0.6)
+
     a
       display block
       padding 10px 13px
       color $menu-color
       text-decoration none
       font-size 15px
+
       @media (min-width: $lg-devices-min)
         font-size 16px
         padding 10px 17px
+
       &:hover
         background darken($menu-bg, 10%)
+
       &:active
         background darken($menu-bg, 15%)
+
     .current-menu-item > a
       background darken($menu-bg, 5%)
+
     & > .menu-item
       float left
       position relative
+
       &:hover 
         .sub-menu
           display block
+
       &:first-child > a
-        border-radius 10px 0 0 10px     
+        border-radius 10px 0 0 10px 
+
     .sub-menu
       display none
       position absolute
@@ -71,18 +89,23 @@
       list-style-type none
       background rgba($menu-bg, 0.95)
       border-radius 0 0 4px 4px
+
       & > .menu-item:last-child > a
         border-radius 0 0 4px 4px
+
     .current-page-ancestor > a
       background darken($menu-bg, 3%)
+
   &-item-home
     &-icon
       display none
       width 16px
       height 14px
       position relative
+
       .header &
         display inline-block 
+
       &:before
         content ''
         display inline-block
@@ -95,10 +118,21 @@
         left 0px
         bottom -2px 
         background-image url(./img/home.svg)
+
     &-text
       display none
       .menu-mobile &
         display inline
-  &-search
+
+  &-fly
     float right
+    height 36px
+    padding 7px 20px
+    color $menu-color
+    background darken($menu-bg, 5%)
+    border none
+    border-left 1px solid darken($menu-bg, 8%)
+
+    @media (min-width: $sm-devices-min)
+      display none
       

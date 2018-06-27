@@ -461,7 +461,7 @@ $('.bxslider').bxSlider({
 * Modal fly
 */
 
-$('#modal-fly-open').click(function()
+$('[data-event="modal-fly-open"').click(function()
 {
   $('#modal-fly').modal('show');
 });
