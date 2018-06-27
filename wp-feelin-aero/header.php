@@ -64,7 +64,7 @@
           <button 
             class="flybtn" 
             data-event="modal-fly-open"
-          ><span>Полетать</span></button>
+          ><span>Полетать!</span></button>
         </div>
       </div>
     </header>
