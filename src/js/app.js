@@ -1,6 +1,7 @@
 /*
 * Mmenu jQuery plugin init
 */
+
 $(".header .menu").clone().appendTo(".menu-mobile");
 
 $(".menu-mobile").mmenu({
@@ -15,9 +16,11 @@ $(".menu-toggle").click(function() {
    API.open();
 });
 
+
 /*
 * Comment
 */
+
 $('.comment-form-comment textarea').on('change', function()
 {
   if($(this).val())
@@ -25,6 +28,7 @@ $('.comment-form-comment textarea').on('change', function()
   else
     $(this).removeClass('comment-dirty');
 });
+
 
 /*
 * Fancybox
@@ -61,6 +65,7 @@ $('.gallery a').fancybox(
   }
 });
 
+
 /*
 * Gallery fold
 */
@@ -72,6 +77,7 @@ $('.gallery').each(function(idx, gallery)
     console.log('Need fold');
   }
 });
+
 
 /*
 * Min Width Shadow jQuery plugin
@@ -192,6 +198,7 @@ $('.gallery').each(function(idx, gallery)
 }( jQuery ));
 
 $('table').minWidthShadow();
+
 
 /*
 * Fly plavces
@@ -390,6 +397,7 @@ function getHash()
   return unSerialize;
 }
 
+
 /*
 * Search form
 */
@@ -439,6 +447,7 @@ toggleSearch('.menu-search .search-form', '.menu-search');
 // for desktop
 toggleSearch('.header__search .search-form', '.header__search');
 
+
 /*
 * BxSlider
 */
@@ -457,11 +466,12 @@ $('.bxslider').bxSlider({
   }
 });
 
+
 /*
 * Modal fly
 */
 
-$('[data-event="modal-fly-open"').click(function()
+$('[data-event="modal-fly-open"').on('click touchstart',function()
 {
   $('#modal-fly').modal('show');
 });
@@ -473,3 +483,17 @@ document.addEventListener('wpcf7mailsent', function(event) {
     }, 5000); 
   }
 }, false);
+
+// fix fly button on scroll
+
+var modalFixedButton = document.querySelector('#flybtn-fixed');
+
+var waitButton = debounce(function(event) {
+  if (document.documentElement.scrollTop > 270) {
+    modalFixedButton.classList.add('flybtn_show');
+  } else {
+    modalFixedButton.classList.remove('flybtn_show');
+  };
+}, 40);
+
+document.addEventListener('scroll', waitButton, true);
