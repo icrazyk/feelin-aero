@@ -39,12 +39,12 @@
                 </div>
                 <div class="menu-toggle__title">Меню</div>
               </div>
-              <button 
+              <!-- <button 
                 class="menu-fly"
                 data-event="modal-fly-open"
               >
                 Полетать!
-              </button>
+              </button> -->
             </div>
             <div class="header-menu__menu">
               <?php if ( has_nav_menu( 'primary' ) ) : ?>
@@ -68,3 +68,11 @@
         </div>
       </div>
     </header>
+
+    <button
+      id="flybtn-fixed"
+      class="flybtn flybtn_fixed" 
+      data-event="modal-fly-open"
+    >
+      <span>Полетать!</span>
+    </button>

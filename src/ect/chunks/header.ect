@@ -14,12 +14,12 @@
             </div>
             <div class="menu-toggle__title">Меню</div>
           </div>
-          <button 
+          <!-- <button 
             class="menu-fly"
             data-event="modal-fly-open"
           >
             Полетать!
-          </button>
+          </button> -->
         </div>
         <div class="header-menu__menu">
           <% include './ect/chunks/menu' %>
@@ -31,6 +31,7 @@
     </div> -->
     <div class="header__flybtn">
       <button
+        id="flybtn"
         class="flybtn" 
         data-event="modal-fly-open"
       >
@@ -39,3 +40,11 @@
     </div>
   </div>
 </header>
+
+<button
+  id="flybtn-fixed"
+  class="flybtn flybtn_fixed" 
+  data-event="modal-fly-open"
+>
+  <span>Полетать!</span>
+</button>

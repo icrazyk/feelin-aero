@@ -38,6 +38,39 @@
     background-repeat no-repeat
     background-size 150px auto
     background-position left top
+
+  &_fixed
+    position fixed
+    right 10px
+    bottom 10px
+    opacity 0
+    transition opacity 0.3s
+    z-index 9999
+    font-size 14px
+    padding 2px 12px
+    height 35px
+
+    @media (min-width: $sm-devices-min)
+      height 45px
+      font-size 18px
+      padding 8px 25px
+
+    @media (min-width: $lg-devices-min)
+      right 20px
+      bottom 20px
+
+    &:before
+      height 65px
+      background-size 95px auto
+      background-position-x center
+
+      @media (min-width: $sm-devices-min)
+        height 100px
+        background-size 150px auto
+        background-position left top
+
+  &_show
+    opacity 1
     
   span
     position relative
