@@ -44,11 +44,13 @@
     right 10px
     bottom 10px
     opacity 0
-    transition opacity 0.3s
+    transition opacity 0.1s
     z-index 9999
-    font-size 14px
-    padding 2px 12px
-    height 35px
+    font-size 10px
+    padding 2px 6px
+    height 26px
+    pointer-events none;
+    border-radius 2px
 
     @media (min-width: $sm-devices-min)
       height 45px
@@ -60,8 +62,8 @@
       bottom 20px
 
     &:before
-      height 65px
-      background-size 95px auto
+      height 46px
+      background-size 66px auto
       background-position-x center
 
       @media (min-width: $sm-devices-min)
@@ -71,6 +73,7 @@
 
   &_show
     opacity 1
+    pointer-events: auto;
     
   span
     position relative
