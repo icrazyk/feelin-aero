@@ -312,3 +312,23 @@ function sendSMS ($sf7) {
 }
 
 add_action("wpcf7_before_send_mail", "sendSMS", 10, 1);
+
+
+/*
+* For pages contains request to http sites
+*/
+
+function isSecure() {
+  return
+    (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    || $_SERVER['SERVER_PORT'] == 443;
+}
+
+function httpsToHttpRedirect() {
+  if(isSecure() && $_SERVER['REQUEST_URI'] == '/uvedomleniya-na-polety/') {
+    wp_redirect('http://feelin-aero.com/uvedomleniya-na-polety/', 308);
+    exit;
+  }
+}
+
+add_action('init', 'httpsToHttpRedirect');
